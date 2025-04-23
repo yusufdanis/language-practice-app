@@ -1,8 +1,1304 @@
 [
   {
-    "word_en": "Placeholder",
-    "definition_en": "This is a placeholder definition.",
-    "word_tr": "Yer Tutucu",
-    "definition_tr": "Bu bir yer tutucu tanımdır."
+    "word_en": "Math",
+    "definition_en": "the study of numbers and shapes",
+    "word_tr": "Matematik",
+    "definition_tr": "sayıların ve şekillerin incelenmesi"
+  },
+  {
+    "word_en": "English",
+    "definition_en": "the language that is spoken in England and America",
+    "word_tr": "İngilizce",
+    "definition_tr": "İngiltere ve Amerika'da konuşulan dil"
+  },
+  {
+    "word_en": "Art",
+    "definition_en": "the lesson that you draw or paint a picture",
+    "word_tr": "Sanat",
+    "definition_tr": "resim çizdiğiniz veya boyadığınız ders"
+  },
+  {
+    "word_en": "Science",
+    "definition_en": "the lesson that you do experiments",
+    "word_tr": "Fen Bilgisi",
+    "definition_tr": "deneyler yaptığınız ders"
+  },
+  {
+    "word_en": "P.E.",
+    "definition_en": "the lesson that you run, jump and play football",
+    "word_tr": "Beden Eğitimi",
+    "definition_tr": "koştuğunuz, zıpladığınız ve futbol oynadığınız ders"
+  },
+  {
+    "word_en": "Music",
+    "definition_en": "the lesson that you play the piano",
+    "word_tr": "Müzik",
+    "definition_tr": "piyano çaldığınız ders"
+  },
+  {
+    "word_en": "Drama",
+    "definition_en": "the lesson that you act and perform a play",
+    "word_tr": "Drama",
+    "definition_tr": "rol yaptığınız ve bir oyun sergilediğiniz ders"
+  },
+  {
+    "word_en": "Geography",
+    "definition_en": "the lesson that you learn about the Earth and the continents",
+    "word_tr": "Coğrafya",
+    "definition_tr": "Dünya ve kıtalar hakkında bilgi edindiğiniz ders"
+  },
+  {
+    "word_en": "study",
+    "definition_en": "to learn about a subject at school",
+    "word_tr": "ders çalışmak",
+    "definition_tr": "okulda bir konu hakkında öğrenmek"
+  },
+  {
+    "word_en": "calendar",
+    "definition_en": "the thing that shows days, weeks and months",
+    "word_tr": "takvim",
+    "definition_tr": "günleri, haftaları ve ayları gösteren şey"
+  },
+  {
+    "word_en": "Cereal",
+    "definition_en": "a food that is made from grain and eaten with milk, especially in the morning",
+    "word_tr": "Mısır Gevreği",
+    "definition_tr": "tahıldan yapılan ve özellikle sabahları sütle yenen bir yiyecek"
+  },
+  {
+    "word_en": "Egg",
+    "definition_en": "a food that comes from chicken",
+    "word_tr": "Yumurta",
+    "definition_tr": "tavuktan gelen bir yiyecek"
+  },
+  {
+    "word_en": "Pepper",
+    "definition_en": "A hollow fruit of various colors, often spicy, used as a vegetable or spice",
+    "word_tr": "Biber",
+    "definition_tr": "Çeşitli renklerde, içi boş, genellikle acı, sebze veya baharat olarak kullanılan bir meyve"
+  },
+  {
+    "word_en": "Olive",
+    "definition_en": "A small oval fruit with a hard pit and bitter taste, often used for oil.",
+    "word_tr": "Zeytin",
+    "definition_tr": "Sert çekirdekli ve acı tadı olan, genellikle yağ için kullanılan küçük oval bir meyve."
+  },
+  {
+    "word_en": "Honey",
+    "definition_en": "A sweet, sticky, yellowish-brown fluid produced by bees.",
+    "word_tr": "Bal",
+    "definition_tr": "Arılar tarafından üretilen tatlı, yapışkan, sarımsı-kahverengi bir sıvı."
+  },
+  {
+    "word_en": "Jam",
+    "definition_en": "A sweet spread made from fruit and sugar boiled together.",
+    "word_tr": "Reçel",
+    "definition_tr": "Meyve ve şekerin birlikte kaynatılmasıyla yapılan tatlı bir ezme."
+  },
+  {
+    "word_en": "Tomato",
+    "definition_en": "A round, red fruit eaten as a vegetable.",
+    "word_tr": "Domates",
+    "definition_tr": "Sebze olarak yenen yuvarlak, kırmızı bir meyve."
+  },
+  {
+    "word_en": "Toast",
+    "definition_en": "Sliced bread that has been browned by dry heat.",
+    "word_tr": "Tost",
+    "definition_tr": "Kuru ısı ile kızartılmış dilimlenmiş ekmek."
+  },
+  {
+    "word_en": "Yogurt",
+    "definition_en": "A thick, creamy food made from fermented milk.",
+    "word_tr": "Yoğurt",
+    "definition_tr": "Fermente sütten yapılan koyu, kremsi bir yiyecek."
+  },
+  {
+    "word_en": "Cheese",
+    "definition_en": "A food made from milk and eaten in the morning",
+    "word_tr": "Peynir",
+    "definition_tr": "Sütten yapılan ve sabahları yenen bir yiyecek"
+  },
+  {
+    "word_en": "Milk",
+    "definition_en": "A white liquid produced by mammals to feed their young.",
+    "word_tr": "Süt",
+    "definition_tr": "Memelilerin yavrularını beslemek için ürettiği beyaz bir sıvı."
+  },
+  {
+    "word_en": "Bread",
+    "definition_en": "Food made of flour, water, and yeast mixed together and baked.",
+    "word_tr": "Ekmek",
+    "definition_tr": "Un, su ve mayanın karıştırılıp pişirilmesiyle yapılan yiyecek."
+  },
+  {
+    "word_en": "Apple",
+    "definition_en": "A round fruit with firm, white flesh and a green, red, or yellow skin.",
+    "word_tr": "Elma",
+    "definition_tr": "Sert, beyaz etli ve yeşil, kırmızı veya sarı kabuklu yuvarlak bir meyve."
+  },
+  {
+    "word_en": "Lemon",
+    "definition_en": "A yellow citrus fruit with sour juice.",
+    "word_tr": "Limon",
+    "definition_tr": "Ekşi suyu olan sarı bir narenciye meyvesi."
+  },
+  {
+    "word_en": "Orange",
+    "definition_en": "A round citrus fruit with a tough bright orange skin and juicy pulp.",
+    "word_tr": "Portakal",
+    "definition_tr": "Sert parlak turuncu kabuklu ve sulu etli yuvarlak bir narenciye meyvesi."
+  },
+  {
+    "word_en": "Grape",
+    "definition_en": "A small, round, typically sweet fruit that grows in bunches.",
+    "word_tr": "Üzüm",
+    "definition_tr": "Salkımlar halinde büyüyen küçük, yuvarlak, genellikle tatlı bir meyve."
+  },
+  {
+    "word_en": "Strawberry",
+    "definition_en": "A small, sweet, red fruit with tiny seeds on its surface.",
+    "word_tr": "Çilek",
+    "definition_tr": "Yüzeyinde küçük tohumları olan küçük, tatlı, kırmızı bir meyve."
+  },
+  {
+    "word_en": "Juice",
+    "definition_en": "The liquid obtained from fruit or vegetables.",
+    "word_tr": "Meyve Suyu",
+    "definition_tr": "Meyve veya sebzelerden elde edilen sıvı."
+  },
+  {
+    "word_en": "Dairy",
+    "definition_en": "Foods made from milk.",
+    "word_tr": "Süt Ürünleri",
+    "definition_tr": "Sütten yapılan yiyecekler."
+  },
+  {
+    "word_en": "Grains",
+    "definition_en": "Seeds of cereal grasses, used as food.",
+    "word_tr": "Tahıllar",
+    "definition_tr": "Yiyecek olarak kullanılan tahıl otlarının tohumları."
+  },
+  {
+    "word_en": "Some",
+    "definition_en": "An unspecified or unknown number or amount.",
+    "word_tr": "Biraz / Birkaç",
+    "definition_tr": "Belirsiz veya bilinmeyen bir sayı veya miktar."
+  },
+  {
+    "word_en": "Any",
+    "definition_en": "One or some indiscriminately of whatever kind.",
+    "word_tr": "Hiç / Herhangi bir",
+    "definition_tr": "Herhangi bir türden gelişigüzel bir veya birkaçı."
+  },
+  {
+    "word_en": "Spread",
+    "definition_en": "To extend over a surface in a layer.",
+    "word_tr": "Sürmek / Yaymak",
+    "definition_tr": "Bir yüzeye bir katman halinde yaymak."
+  },
+  {
+    "word_en": "Cut",
+    "definition_en": "To divide with a knife.",
+    "word_tr": "Kesmek",
+    "definition_tr": "Bir bıçakla bölmek."
+  },
+  {
+    "word_en": "Slice",
+    "definition_en": "A thin, flat piece cut from something.",
+    "word_tr": "Dilimlemek / Dilim",
+    "definition_tr": "Bir şeyden kesilmiş ince, düz bir parça."
+  },
+  {
+    "word_en": "Tall",
+    "definition_en": "Very high from the ground.",
+    "word_tr": "Uzun",
+    "definition_tr": "Yerden çok yüksek."
+  },
+  {
+    "word_en": "Short",
+    "definition_en": "Not tall.",
+    "word_tr": "Kısa",
+    "definition_tr": "Uzun olmayan."
+  },
+  {
+    "word_en": "Medium-Height",
+    "definition_en": "Not tall and not short, in the middle.",
+    "word_tr": "Orta Boylu",
+    "definition_tr": "Ne uzun ne kısa, ortada."
+  },
+  {
+    "word_en": "Old",
+    "definition_en": "Lived for many years.",
+    "word_tr": "Yaşlı",
+    "definition_tr": "Uzun yıllar yaşamış."
+  },
+  {
+    "word_en": "Young",
+    "definition_en": "Not lived for many years.",
+    "word_tr": "Genç",
+    "definition_tr": "Uzun yıllar yaşamamış."
+  },
+  {
+    "word_en": "Middle-aged",
+    "definition_en": "About the age between young and old.",
+    "word_tr": "Orta Yaşlı",
+    "definition_tr": "Genç ve yaşlı arasındaki yaş civarında."
+  },
+  {
+    "word_en": "Skin color",
+    "definition_en": "The natural color of someone's skin.",
+    "word_tr": "Ten rengi",
+    "definition_tr": "Birinin cildinin doğal rengi."
+  },
+  {
+    "word_en": "Long hair",
+    "definition_en": "Hair that is not short.",
+    "word_tr": "Uzun saç",
+    "definition_tr": "Kısa olmayan saç."
+  },
+  {
+    "word_en": "Short hair",
+    "definition_en": "Hair that is not long.",
+    "word_tr": "Kısa saç",
+    "definition_tr": "Uzun olmayan saç."
+  },
+  {
+    "word_en": "Bald",
+    "definition_en": "Having no hair on the head.",
+    "word_tr": "Kel",
+    "definition_tr": "Kafasında hiç saç olmaması."
+  },
+  {
+    "word_en": "Straight hair",
+    "definition_en": "Hair that is not curly or wavy.",
+    "word_tr": "Düz saç",
+    "definition_tr": "Kıvırcık veya dalgalı olmayan saç."
+  },
+  {
+    "word_en": "Curly hair",
+    "definition_en": "Hair that has many curves or spirals.",
+    "word_tr": "Kıvırcık saç",
+    "definition_tr": "Çok sayıda kıvrımı veya spirali olan saç."
+  },
+  {
+    "word_en": "Wavy hair",
+    "definition_en": "Hair that has gentle curves.",
+    "word_tr": "Dalgalı saç",
+    "definition_tr": "Hafif kıvrımları olan saç."
+  },
+  {
+    "word_en": "Helpful",
+    "definition_en": "Willing to assist or provide aid.",
+    "word_tr": "Yardımsever",
+    "definition_tr": "Yardım etmeye veya destek sağlamaya istekli."
+  },
+  {
+    "word_en": "Friendly",
+    "definition_en": "Kind and pleasant to others.",
+    "word_tr": "Arkadaş canlısı",
+    "definition_tr": "Başkalarına karşı nazik ve hoş."
+  },
+  {
+    "word_en": "Funny",
+    "definition_en": "Causing laughter or amusement.",
+    "word_tr": "Komik",
+    "definition_tr": "Kahkahaya veya eğlenceye neden olan."
+  },
+  {
+    "word_en": "Smart",
+    "definition_en": "Intelligent and quick to understand.",
+    "word_tr": "Zeki",
+    "definition_tr": "Akıllı ve çabuk anlayan."
+  },
+  {
+    "word_en": "Chatty",
+    "definition_en": "Liking to talk a lot.",
+    "word_tr": "Konuşkan",
+    "definition_tr": "Çok konuşmayı seven."
+  },
+  {
+    "word_en": "Shy",
+    "definition_en": "Timid and reserved around others.",
+    "word_tr": "Utangaç",
+    "definition_tr": "Başkalarının yanında çekingen ve içine kapanık."
+  },
+  {
+    "word_en": "Town",
+    "definition_en": "A place where people live and work, smaller than a city.",
+    "word_tr": "Kasaba",
+    "definition_tr": "İnsanların yaşadığı ve çalıştığı, şehirden daha küçük bir yer."
+  },
+  {
+    "word_en": "Continent",
+    "definition_en": "One of the large land masses of the Earth.",
+    "word_tr": "Kıta",
+    "definition_tr": "Dünya'nın büyük kara parçalarından biri."
+  },
+  {
+    "word_en": "Village",
+    "definition_en": "A small group of houses in the countryside.",
+    "word_tr": "Köy",
+    "definition_tr": "Kırsal alanda küçük bir ev grubu."
+  },
+  {
+    "word_en": "City",
+    "definition_en": "A large town where many people live and work.",
+    "word_tr": "Şehir",
+    "definition_tr": "Birçok insanın yaşadığı ve çalıştığı büyük bir kasaba."
+  },
+  {
+    "word_en": "The World",
+    "definition_en": "The Earth and all the people and things on it.",
+    "word_tr": "Dünya",
+    "definition_tr": "Dünya ve üzerindeki tüm insanlar ve şeyler."
+  },
+  {
+    "word_en": "River",
+    "definition_en": "A natural flow of water that moves across the land into a sea, lake, or another river.",
+    "word_tr": "Nehir",
+    "definition_tr": "Karada hareket ederek bir denize, göle veya başka bir nehre akan doğal bir su akışı."
+  },
+  {
+    "word_en": "Forest",
+    "definition_en": "A large area of land covered with trees.",
+    "word_tr": "Orman",
+    "definition_tr": "Ağaçlarla kaplı geniş bir arazi alanı."
+  },
+  {
+    "word_en": "Land",
+    "definition_en": "The part of the Earth's surface that is not covered by water.",
+    "word_tr": "Kara",
+    "definition_tr": "Dünya yüzeyinin suyla kaplı olmayan kısmı."
+  },
+  {
+    "word_en": "Mountain",
+    "definition_en": "A very high natural place on Earth, higher than a hill.",
+    "word_tr": "Dağ",
+    "definition_tr": "Dünya üzerinde çok yüksek, bir tepeden daha yüksek doğal bir yer."
+  },
+  {
+    "word_en": "Sea",
+    "definition_en": "A large area of salt water that covers most of the Earth.",
+    "word_tr": "Deniz",
+    "definition_tr": "Dünya'nın çoğunu kaplayan geniş bir tuzlu su alanı."
+  },
+  {
+    "word_en": "Grassland",
+    "definition_en": "A large open area of land covered with grass.",
+    "word_tr": "Çayır",
+    "definition_tr": "Otlarla kaplı geniş açık bir arazi alanı."
+  },
+  {
+    "word_en": "Sand",
+    "definition_en": "Very small loose pieces of rock that form beaches and deserts.",
+    "word_tr": "Kum",
+    "definition_tr": "Plajları ve çölleri oluşturan çok küçük gevşek kaya parçaları."
+  },
+  {
+    "word_en": "Rock",
+    "definition_en": "A hard, solid material found in the Earth.",
+    "word_tr": "Kaya",
+    "definition_tr": "Dünya'da bulunan sert, katı bir malzeme."
+  },
+  {
+    "word_en": "Plant",
+    "definition_en": "A living thing that grows in the ground and usually has leaves, stems, and roots.",
+    "word_tr": "Bitki",
+    "definition_tr": "Yerde büyüyen ve genellikle yaprakları, gövdeleri ve kökleri olan canlı bir şey."
+  },
+  {
+    "word_en": "Coral",
+    "definition_en": "A hard, stony substance formed in the sea by the skeletons of small animals.",
+    "word_tr": "Mercan",
+    "definition_tr": "Denizde küçük hayvanların iskeletleri tarafından oluşturulan sert, taşlı bir madde."
+  },
+  {
+    "word_en": "Tree",
+    "definition_en": "A tall plant with a thick wooden trunk and branches.",
+    "word_tr": "Ağaç",
+    "definition_tr": "Kalın ahşap gövdeli ve dalları olan uzun bir bitki."
+  },
+  {
+    "word_en": "The Earth (gezegen)",
+    "definition_en": "The planet we live on.",
+    "word_tr": "Dünya (gezegen)",
+    "definition_tr": "Üzerinde yaşadığımız gezegen."
+  },
+  {
+    "word_en": "The Solar System",
+    "definition_en": "The Sun and all the planets that go around it.",
+    "word_tr": "Güneş Sistemi",
+    "definition_tr": "Güneş ve etrafında dönen tüm gezegenler."
+  },
+  {
+    "word_en": "Get up",
+    "definition_en": "To move from a lying position to a standing or sitting position.",
+    "word_tr": "Kalkmak",
+    "definition_tr": "Yatar pozisyondan ayakta veya oturur pozisyona geçmek."
+  },
+  {
+    "word_en": "Wake up",
+    "definition_en": "To stop sleeping.",
+    "word_tr": "Uyanmak",
+    "definition_tr": "Uyumayı bırakmak."
+  },
+  {
+    "word_en": "Get dressed",
+    "definition_en": "To put clothes on your body.",
+    "word_tr": "Giyinmek",
+    "definition_tr": "Vücudunuza kıyafet giymek."
+  },
+  {
+    "word_en": "Have breakfast",
+    "definition_en": "To eat the first meal of the day, usually in the morning.",
+    "word_tr": "Kahvaltı yapmak",
+    "definition_tr": "Günün ilk öğününü, genellikle sabahları yemek."
+  },
+  {
+    "word_en": "Have lunch",
+    "definition_en": "To eat the midday meal.",
+    "word_tr": "Öğle yemeği yemek",
+    "definition_tr": "Öğlen yemeğini yemek."
+  },
+  {
+    "word_en": "Have dinner",
+    "definition_en": "To eat the main meal of the day, usually in the evening.",
+    "word_tr": "Akşam yemeği yemek",
+    "definition_tr": "Günün ana öğününü, genellikle akşamları yemek."
+  },
+  {
+    "word_en": "Brush teeth",
+    "definition_en": "To clean your teeth with a brush and toothpaste.",
+    "word_tr": "Diş fırçalamak",
+    "definition_tr": "Dişlerinizi bir fırça ve diş macunu ile temizlemek."
+  },
+  {
+    "word_en": "Go to School",
+    "definition_en": "To attend a place where children learn.",
+    "word_tr": "Okula gitmek",
+    "definition_tr": "Çocukların öğrendiği bir yere gitmek."
+  },
+  {
+    "word_en": "Do exercise",
+    "definition_en": "To move your body actively to become stronger and healthier.",
+    "word_tr": "Egzersiz yapmak",
+    "definition_tr": "Daha güçlü ve sağlıklı olmak için vücudunuzu aktif olarak hareket ettirmek."
+  },
+  {
+    "word_en": "Do homework",
+    "definition_en": "To complete school work at home.",
+    "word_tr": "Ödev yapmak",
+    "definition_tr": "Okul işini evde tamamlamak."
+  },
+  {
+    "word_en": "Take a shower",
+    "definition_en": "To wash your body with water.",
+    "word_tr": "Duş almak",
+    "definition_tr": "Vücudunuzu suyla yıkamak."
+  },
+  {
+    "word_en": "Go to bed",
+    "definition_en": "To lie down to sleep.",
+    "word_tr": "Yatağa gitmek",
+    "definition_tr": "Uyumak için uzanmak."
+  },
+  {
+    "word_en": "Sleep",
+    "definition_en": "To rest your body and mind.",
+    "word_tr": "Uyumak",
+    "definition_tr": "Vücudunuzu ve zihninizi dinlendirmek."
+  },
+  {
+    "word_en": "Extended family",
+    "definition_en": "A family group that includes parents, children, and other relatives like grandparents, aunts, and uncles.",
+    "word_tr": "Geniş aile",
+    "definition_tr": "Ebeveynleri, çocukları ve büyükanne, büyükbaba, teyze, amca gibi diğer akrabaları içeren bir aile grubu."
+  },
+  {
+    "word_en": "Nuclear family",
+    "definition_en": "A family group that includes parents and their children.",
+    "word_tr": "Çekirdek aile",
+    "definition_tr": "Ebeveynleri ve çocuklarını içeren bir aile grubu."
+  },
+  {
+    "word_en": "Television",
+    "definition_en": "A box with a screen that shows moving pictures and sound. You can watch shows and movies on it.",
+    "word_tr": "Televizyon",
+    "definition_tr": "Hareketli resimleri ve sesi gösteren ekranlı bir kutu. Üzerinde dizi ve film izleyebilirsiniz."
+  },
+  {
+    "word_en": "Smartphone",
+    "definition_en": "A mobile phone that can do many things like making calls, browsing the internet, and using apps.",
+    "word_tr": "Akıllı Telefon",
+    "definition_tr": "Arama yapma, internette gezinme ve uygulama kullanma gibi birçok şeyi yapabilen bir cep telefonu."
+  },
+  {
+    "word_en": "Laptop",
+    "definition_en": "A small, portable computer that you can close like a book. It has a screen, keyboard, and a mouse area all in one.",
+    "word_tr": "Dizüstü Bilgisayar",
+    "definition_tr": "Bir kitap gibi kapatabileceğiniz küçük, taşınabilir bir bilgisayar. Ekranı, klavyesi ve fare alanı hepsi bir arada bulunur."
+  },
+  {
+    "word_en": "Camera",
+    "definition_en": "A device used to take pictures or record videos.",
+    "word_tr": "Kamera",
+    "definition_tr": "Fotoğraf çekmek veya video kaydetmek için kullanılan bir cihaz."
+  },
+  {
+    "word_en": "USB Drive",
+    "definition_en": "A small device that you plug into a computer to save and move information. It's also called a flash drive or memory stick.",
+    "word_tr": "USB Sürücü",
+    "definition_tr": "Bilgileri kaydetmek ve taşımak için bir bilgisayara taktığınız küçük bir cihaz. Flash sürücü veya bellek çubuğu olarak da adlandırılır."
+  },
+  {
+    "word_en": "Radio",
+    "definition_en": "A device that receives signals through the air and plays sounds or music.",
+    "word_tr": "Radyo",
+    "definition_tr": "Havadan sinyalleri alan ve ses veya müzik çalan bir cihaz."
+  },
+  {
+    "word_en": "Drone",
+    "definition_en": "A flying machine that does not have a person inside. It can be controlled from the ground.",
+    "word_tr": "Drone",
+    "definition_tr": "İçinde insan olmayan uçan bir makine. Yerden kontrol edilebilir."
+  },
+  {
+    "word_en": "Phone Battery",
+    "definition_en": "The part of a phone that stores electrical power so it can work without being plugged in. You need to charge it.",
+    "word_tr": "Telefon Bataryası",
+    "definition_tr": "Bir telefonun prize takılı olmadan çalışabilmesi için elektrik gücünü depolayan parçası. Şarj etmeniz gerekir."
+  },
+  {
+    "word_en": "The Internet",
+    "definition_en": "A very large network of computers all over the world that are connected to each other. You can find information and communicate with people using it.",
+    "word_tr": "İnternet",
+    "definition_tr": "Dünyanın her yerindeki birbirine bağlı çok büyük bir bilgisayar ağı. Bilgi bulabilir ve insanlarla iletişim kurmak için kullanabilirsiniz."
+  },
+  {
+    "word_en": "Hoverboard",
+    "definition_en": "A board with wheels that moves without you pushing it. It looks like you are floating slightly above the ground.",
+    "word_tr": "Kaykay (Elektrikli)",
+    "definition_tr": "Siz itmeden hareket eden tekerlekli bir tahta. Yerden biraz yukarıda süzülüyormuş gibi görünür."
+  },
+  {
+    "word_en": "Length",
+    "definition_en": "How long something is from one end to the other.",
+    "word_tr": "Uzunluk",
+    "definition_tr": "Bir şeyin bir ucundan diğerine ne kadar uzun olduğu."
+  },
+  {
+    "word_en": "Height",
+    "definition_en": "How tall something is from the bottom to the top.",
+    "word_tr": "Yükseklik",
+    "definition_tr": "Bir şeyin alttan üste ne kadar uzun olduğu."
+  },
+  {
+    "word_en": "Width",
+    "definition_en": "How wide something is from one side to the other.",
+    "word_tr": "Genişlik",
+    "definition_tr": "Bir şeyin bir yandan diğerine ne kadar geniş olduğu."
+  },
+  {
+    "word_en": "Adventure",
+    "definition_en": "An exciting or risky experience.",
+    "word_tr": "Macera",
+    "definition_tr": "Heyecan verici veya riskli bir deneyim."
+  },
+  {
+    "word_en": "Graphic Novel",
+    "definition_en": "A story told in pictures like a comic book, but longer.",
+    "word_tr": "Grafik Roman",
+    "definition_tr": "Çizgi roman gibi resimlerle anlatılan ama daha uzun bir hikaye."
+  },
+  {
+    "word_en": "Science Fiction",
+    "definition_en": "Stories about things that could happen in the future with advanced technology or in space.",
+    "word_tr": "Bilim Kurgu",
+    "definition_tr": "Gelecekte ileri teknolojiyle veya uzayda olabilecek şeyler hakkındaki hikayeler."
+  },
+  {
+    "word_en": "Mystery",
+    "definition_en": "A story where something unknown happens and you try to find out the answer.",
+    "word_tr": "Gizem",
+    "definition_tr": "Bilinmeyen bir şeyin olduğu ve cevabı bulmaya çalıştığınız bir hikaye."
+  },
+  {
+    "word_en": "Fantasy",
+    "definition_en": "Stories with magic, imaginary creatures, and often in imaginary worlds.",
+    "word_tr": "Fantastik",
+    "definition_tr": "Büyü, hayali yaratıklar içeren ve genellikle hayali dünyalarda geçen hikayeler."
+  },
+  {
+    "word_en": "Comedy",
+    "definition_en": "Stories or shows that are funny and make you laugh.",
+    "word_tr": "Komedi",
+    "definition_tr": "Komik olan ve sizi güldüren hikayeler veya gösteriler."
+  },
+  {
+    "word_en": "Poetry",
+    "definition_en": "Writing that uses words in a creative and often rhythmic way.",
+    "word_tr": "Şiir",
+    "definition_tr": "Kelimeleri yaratıcı ve genellikle ritmik bir şekilde kullanan yazı."
+  },
+  {
+    "word_en": "Biography",
+    "definition_en": "A book that tells the true story of someone's life.",
+    "word_tr": "Biyografi",
+    "definition_tr": "Birinin hayatının gerçek hikayesini anlatan bir kitap."
+  },
+  {
+    "word_en": "Title",
+    "definition_en": "The name of a book, story, or movie.",
+    "word_tr": "Başlık",
+    "definition_tr": "Bir kitabın, hikayenin veya filmin adı."
+  },
+  {
+    "word_en": "Author",
+    "definition_en": "The person who wrote a book or story.",
+    "word_tr": "Yazar",
+    "definition_tr": "Bir kitap veya hikaye yazan kişi."
+  },
+  {
+    "word_en": "Character",
+    "definition_en": "A person or animal in a story.",
+    "word_tr": "Karakter",
+    "definition_tr": "Bir hikayedeki kişi veya hayvan."
+  },
+  {
+    "word_en": "Setting",
+    "definition_en": "Where and when a story takes place.",
+    "word_tr": "Mekan / Zaman",
+    "definition_tr": "Bir hikayenin nerede ve ne zaman geçtiği."
+  },
+  {
+    "word_en": "Funny",
+    "definition_en": "Something that makes you laugh.",
+    "word_tr": "Komik",
+    "definition_tr": "Sizi güldüren bir şey."
+  },
+  {
+    "word_en": "Scary",
+    "definition_en": "Something that makes you feel afraid.",
+    "word_tr": "Korkutucu",
+    "definition_tr": "Korkmanıza neden olan bir şey."
+  },
+  {
+    "word_en": "Exciting",
+    "definition_en": "Something that makes you feel very happy and interested.",
+    "word_tr": "Heyecan verici",
+    "definition_tr": "Sizi çok mutlu ve ilgili hissettiren bir şey."
+  },
+  {
+    "word_en": "Interesting",
+    "definition_en": "Something that holds your attention and makes you want to know more.",
+    "word_tr": "İlginç",
+    "definition_tr": "Dikkatinizi çeken ve daha fazlasını bilmek istemenize neden olan bir şey."
+  },
+  {
+    "word_en": "Silly",
+    "definition_en": "Something that is foolish or ridiculous.",
+    "word_tr": "Aptalca / Saçma",
+    "definition_tr": "Aptalca veya gülünç olan bir şey."
+  },
+  {
+    "word_en": "Fairy tale",
+    "definition_en": "A story for children that often has magic and imaginary characters like fairies.",
+    "word_tr": "Peri masalı",
+    "definition_tr": "Genellikle büyü ve periler gibi hayali karakterler içeren çocuklar için bir hikaye."
+  },
+  {
+    "word_en": "Folk tale",
+    "definition_en": "An old story that has been told many times over the years.",
+    "word_tr": "Halk hikayesi",
+    "definition_tr": "Yıllar boyunca birçok kez anlatılmış eski bir hikaye."
+  },
+  {
+    "word_en": "Fable",
+    "definition_en": "A short story that teaches a lesson, often with animals as characters.",
+    "word_tr": "Fabl",
+    "definition_tr": "Genellikle hayvanların karakter olduğu, ders veren kısa bir hikaye."
+  },
+  {
+    "word_en": "Sing",
+    "definition_en": "To make musical sounds with your voice.",
+    "word_tr": "Şarkı söylemek",
+    "definition_tr": "Sesinizle müzikal sesler çıkarmak."
+  },
+  {
+    "word_en": "Act",
+    "definition_en": "To pretend to be someone else in a play or movie.",
+    "word_tr": "Rol yapmak",
+    "definition_tr": "Bir oyunda veya filmde başka biri gibi davranmak."
+  },
+  {
+    "word_en": "Stomp feet",
+    "definition_en": "To hit the ground hard with your feet.",
+    "word_tr": "Ayaklarını yere vurmak",
+    "definition_tr": "Ayaklarınızla yere sertçe vurmak."
+  },
+  {
+    "word_en": "Wave arms",
+    "definition_en": "To move your arms from side to side, often to say hello or goodbye.",
+    "word_tr": "Kollarını sallamak",
+    "definition_tr": "Kollarınızı bir yandan diğerine hareket ettirmek, genellikle merhaba veya hoşça kal demek için."
+  },
+  {
+    "word_en": "Shake body",
+    "definition_en": "To move your body quickly up and down or side to side.",
+    "word_tr": "Vücudunu sallamak",
+    "definition_tr": "Vücudunuzu hızla yukarı aşağı veya yanlara doğru hareket ettirmek."
+  },
+  {
+    "word_en": "Clap hands",
+    "definition_en": "To hit your hands together to make a sound, often to show you like something.",
+    "word_tr": "Alkışlamak",
+    "definition_tr": "Bir ses çıkarmak için ellerinizi birbirine vurmak, genellikle bir şeyi beğendiğinizi göstermek için."
+  },
+  {
+    "word_en": "Whisper",
+    "definition_en": "To speak very quietly.",
+    "word_tr": "Fısıldamak",
+    "definition_tr": "Çok sessiz konuşmak."
+  },
+  {
+    "word_en": "Shout",
+    "definition_en": "To speak very loudly.",
+    "word_tr": "Bağırmak",
+    "definition_tr": "Çok yüksek sesle konuşmak."
+  },
+  {
+    "word_en": "Laugh",
+    "definition_en": "To make sounds with your voice when you think something is funny.",
+    "word_tr": "Gülmek",
+    "definition_tr": "Bir şeyin komik olduğunu düşündüğünüzde sesinizle sesler çıkarmak."
+  },
+  {
+    "word_en": "Cry",
+    "definition_en": "To have tears come from your eyes, often when you are sad or hurt.",
+    "word_tr": "Ağlamak",
+    "definition_tr": "Genellikle üzgün veya incinmiş olduğunuzda gözlerinizden yaş gelmesi."
+  },
+  {
+    "word_en": "Snap fingers",
+    "definition_en": "To make a clicking sound with your fingers.",
+    "word_tr": "Parmak şıklatmak",
+    "definition_tr": "Parmaklarınızla tıklama sesi çıkarmak."
+  },
+  {
+    "word_en": "Fold arms",
+    "definition_en": "To cross your arms in front of your body.",
+    "word_tr": "Kollarını kavuşturmak",
+    "definition_tr": "Kollarınızı vücudunuzun önünde çaprazlamak."
+  },
+  {
+    "word_en": "Sense",
+    "definition_en": "A way your body understands the world, like feeling or smelling.",
+    "word_tr": "Duyu",
+    "definition_tr": "Vücudunuzun dünyayı anlama şekli, hissetme veya koklama gibi."
+  },
+  {
+    "word_en": "Hear",
+    "definition_en": "To use your ears to know about sounds.",
+    "word_tr": "Duymak",
+    "definition_tr": "Sesler hakkında bilgi edinmek için kulaklarınızı kullanmak."
+  },
+  {
+    "word_en": "See (eyesight)",
+    "definition_en": "To use your eyes to know what things look like.",
+    "word_tr": "Görmek (görme duyusu)",
+    "definition_tr": "Şeylerin neye benzediğini bilmek için gözlerinizi kullanmak."
+  },
+  {
+    "word_en": "Touch",
+    "definition_en": "To feel something with your hand or another part of your body.",
+    "word_tr": "Dokunmak",
+    "definition_tr": "Elinizle veya vücudunuzun başka bir kısmıyla bir şeyi hissetmek."
+  },
+  {
+    "word_en": "Taste",
+    "definition_en": "To know the flavor of food or drink in your mouth.",
+    "word_tr": "Tatmak",
+    "definition_tr": "Ağzınızdaki yiyecek veya içeceğin lezzetini bilmek."
+  },
+  {
+    "word_en": "Smell",
+    "definition_en": "To know the scent of something with your nose.",
+    "word_tr": "Koklamak",
+    "definition_tr": "Burnunuzla bir şeyin kokusunu bilmek."
+  },
+  {
+    "word_en": "Drawing",
+    "definition_en": "Creating pictures with lines, usually using a pencil or pen.",
+    "word_tr": "Çizim",
+    "definition_tr": "Genellikle kurşun kalem veya tükenmez kalem kullanarak çizgilerle resim oluşturmak."
+  },
+  {
+    "word_en": "Painting",
+    "definition_en": "Applying color to a surface with a brush to create art.",
+    "word_tr": "Boyama",
+    "definition_tr": "Sanat yaratmak için bir fırça ile bir yüzeye renk uygulamak."
+  },
+  {
+    "word_en": "Ceramics",
+    "definition_en": "Making objects from clay that are then hardened by heating.",
+    "word_tr": "Seramik",
+    "definition_tr": "Kilden nesneler yapmak ve sonra ısıtarak sertleştirmek."
+  },
+  {
+    "word_en": "Photography",
+    "definition_en": "Capturing images using a camera.",
+    "word_tr": "Fotoğrafçılık",
+    "definition_tr": "Bir kamera kullanarak görüntüleri yakalamak."
+  },
+  {
+    "word_en": "Filmmaking",
+    "definition_en": "The process of creating movies.",
+    "word_tr": "Film yapımı",
+    "definition_tr": "Film oluşturma süreci."
+  },
+  {
+    "word_en": "Sculpture",
+    "definition_en": "Creating three-dimensional art by shaping materials like stone or metal.",
+    "word_tr": "Heykel",
+    "definition_tr": "Taş veya metal gibi malzemeleri şekillendirerek üç boyutlu sanat yaratmak."
+  },
+  {
+    "word_en": "Print making",
+    "definition_en": "Creating multiple copies of an image by transferring it from a surface.",
+    "word_tr": "Baskı yapımı",
+    "definition_tr": "Bir görüntüyü bir yüzeyden aktararak birden fazla kopyasını oluşturmak."
+  },
+  {
+    "word_en": "Architecture",
+    "definition_en": "The design and construction of buildings.",
+    "word_tr": "Mimari",
+    "definition_tr": "Binaların tasarımı ve inşası."
+  },
+  {
+    "word_en": "Designing building",
+    "definition_en": "Planning and creating the blueprints for a building.",
+    "word_tr": "Bina tasarlama",
+    "definition_tr": "Bir bina için planlama yapmak ve planlarını oluşturmak."
+  },
+  {
+    "word_en": "Circle",
+    "definition_en": "A round shape where all points on the edge are the same distance from the center.",
+    "word_tr": "Daire",
+    "definition_tr": "Kenarındaki tüm noktaların merkezden aynı uzaklıkta olduğu yuvarlak bir şekil."
+  },
+  {
+    "word_en": "Square",
+    "definition_en": "A shape with four equal sides and four right angles.",
+    "word_tr": "Kare",
+    "definition_tr": "Dört eşit kenarı ve dört dik açısı olan bir şekil."
+  },
+  {
+    "word_en": "Triangle",
+    "definition_en": "A shape with three sides and three angles.",
+    "word_tr": "Üçgen",
+    "definition_tr": "Üç kenarı ve üç açısı olan bir şekil."
+  },
+  {
+    "word_en": "Rectangle",
+    "definition_en": "A shape with four straight sides and four right angles, where opposite sides are equal in length.",
+    "word_tr": "Dikdörtgen",
+    "definition_tr": "Dört düz kenarı ve dört dik açısı olan, karşı kenarları eşit uzunlukta olan bir şekil."
+  },
+  {
+    "word_en": "Star",
+    "definition_en": "A shape with points that usually radiate outwards from a central area.",
+    "word_tr": "Yıldız",
+    "definition_tr": "Genellikle merkezi bir alandan dışarı doğru yayılan noktaları olan bir şekil."
+  },
+  {
+    "word_en": "Heart",
+    "definition_en": "A shape often used to represent love and emotion.",
+    "word_tr": "Kalp",
+    "definition_tr": "Genellikle sevgi ve duyguyu temsil etmek için kullanılan bir şekil."
+  },
+  {
+    "word_en": "Oval",
+    "definition_en": "A shape that is like a stretched-out circle.",
+    "word_tr": "Oval",
+    "definition_tr": "Uzatılmış bir daire gibi olan bir şekil."
+  },
+  {
+    "word_en": "Diamond",
+    "definition_en": "A shape with four equal sides and opposite angles that are equal. It can also be called a rhombus.",
+    "word_tr": "Eşkenar Dörtgen / Baklava Dilimi",
+    "definition_tr": "Dört eşit kenarı ve eşit karşı açıları olan bir şekil. Eşkenar dörtgen olarak da adlandırılabilir."
+  },
+  {
+    "word_en": "Hexagon",
+    "definition_en": "A shape with six sides and six angles.",
+    "word_tr": "Altıgen",
+    "definition_tr": "Altı kenarı ve altı açısı olan bir şekil."
+  },
+  {
+    "word_en": "Spiral",
+    "definition_en": "A curve that winds around a central point while continuously getting closer to or farther away from it.",
+    "word_tr": "Spiral",
+    "definition_tr": "Merkezi bir noktanın etrafında dolanan ve sürekli olarak ona yaklaşan veya ondan uzaklaşan bir eğri."
+  },
+  {
+    "word_en": "Solid",
+    "definition_en": "Something that is firm and keeps its shape. It is not a liquid or a gas.",
+    "word_tr": "Katı",
+    "definition_tr": "Sert olan ve şeklini koruyan bir şey. Sıvı veya gaz değildir."
+  },
+  {
+    "word_en": "Liquid",
+    "definition_en": "Something that flows and can change its shape. Water is a liquid. It is not solid or gas.",
+    "word_tr": "Sıvı",
+    "definition_tr": "Akan ve şeklini değiştirebilen bir şey. Su bir sıvıdır. Katı veya gaz değildir."
+  },
+  {
+    "word_en": "Gas",
+    "definition_en": "Something like air that can spread out to fill any space. We breathe gas (air). It is not solid or liquid.",
+    "word_tr": "Gaz",
+    "definition_tr": "Hava gibi herhangi bir alanı doldurmak için yayılabilen bir şey. Gaz (hava) soluruz. Katı veya sıvı değildir."
+  },
+  {
+    "word_en": "Freeze",
+    "definition_en": "To become hard because it is very cold, like water turning into ice.",
+    "word_tr": "Donmak",
+    "definition_tr": "Çok soğuk olduğu için sertleşmek, suyun buza dönüşmesi gibi."
+  },
+  {
+    "word_en": "Melt",
+    "definition_en": "To change from a solid to a liquid because of heat, like ice turning into water.",
+    "word_tr": "Erimek",
+    "definition_tr": "Isı nedeniyle katıdan sıvıya değişmek, buzun suya dönüşmesi gibi."
+  },
+  {
+    "word_en": "Flow",
+    "definition_en": "To move like water in a river.",
+    "word_tr": "Akmak",
+    "definition_tr": "Bir nehirdeki su gibi hareket etmek."
+  },
+  {
+    "word_en": "Heat up",
+    "definition_en": "To make something warmer.",
+    "word_tr": "Isıtmak",
+    "definition_tr": "Bir şeyi daha sıcak yapmak."
+  },
+  {
+    "word_en": "Cool down",
+    "definition_en": "To make something less warm.",
+    "word_tr": "Soğutmak",
+    "definition_tr": "Bir şeyi daha az sıcak yapmak."
+  },
+  {
+    "word_en": "Boil",
+    "definition_en": "To heat a liquid until it bubbles and turns into a gas (steam).",
+    "word_tr": "Kaynamak / Kaynatmak",
+    "definition_tr": "Bir sıvıyı köpürene ve gaza (buhar) dönüşene kadar ısıtmak."
+  },
+  {
+    "word_en": "Steam",
+    "definition_en": "The gas that water turns into when it is boiled. You can see steam coming from a kettle.",
+    "word_tr": "Buhar",
+    "definition_tr": "Suyun kaynatıldığında dönüştüğü gaz. Bir çaydanlıktan buhar çıktığını görebilirsiniz."
+  },
+  {
+    "word_en": "Thermometer",
+    "definition_en": "A tool used to measure how hot or cold something is (temperature).",
+    "word_tr": "Termometre",
+    "definition_tr": "Bir şeyin ne kadar sıcak veya soğuk olduğunu (sıcaklık) ölçmek için kullanılan bir araç."
+  },
+  {
+    "word_en": "Temperature",
+    "definition_en": "How hot or cold something is. We use a thermometer to find the temperature.",
+    "word_tr": "Sıcaklık",
+    "definition_tr": "Bir şeyin ne kadar sıcak veya soğuk olduğu. Sıcaklığı bulmak için bir termometre kullanırız."
+  },
+  {
+    "word_en": "Rain",
+    "definition_en": "Water falling from the sky in small drops.",
+    "word_tr": "Yağmur",
+    "definition_tr": "Gökten küçük damlalar halinde düşen su."
+  },
+  {
+    "word_en": "Rainy",
+    "definition_en": "When there is a lot of rain.",
+    "word_tr": "Yağmurlu",
+    "definition_tr": "Çok yağmur olduğunda."
+  },
+  {
+    "word_en": "Snow",
+    "definition_en": "Soft, white pieces of ice that fall from the sky when it's very cold.",
+    "word_tr": "Kar",
+    "definition_tr": "Çok soğuk olduğunda gökten düşen yumuşak, beyaz buz parçaları."
+  },
+  {
+    "word_en": "Snowy",
+    "definition_en": "When there is a lot of snow on the ground.",
+    "word_tr": "Karlı",
+    "definition_tr": "Yerde çok kar olduğunda."
+  },
+  {
+    "word_en": "Wind",
+    "definition_en": "Air moving quickly.",
+    "word_tr": "Rüzgar",
+    "definition_tr": "Hızla hareket eden hava."
+  },
+  {
+    "word_en": "Windy",
+    "definition_en": "When the wind is blowing strongly.",
+    "word_tr": "Rüzgarlı",
+    "definition_tr": "Rüzgar kuvvetli estiğinde."
+  },
+  {
+    "word_en": "Cloud",
+    "definition_en": "A white or gray mass in the sky made of small drops of water.",
+    "word_tr": "Bulut",
+    "definition_tr": "Gökyüzünde küçük su damlalarından oluşan beyaz veya gri bir kütle."
+  },
+  {
+    "word_en": "Cloudy",
+    "definition_en": "When there are many clouds in the sky.",
+    "word_tr": "Bulutlu",
+    "definition_tr": "Gökyüzünde çok bulut olduğunda."
+  },
+  {
+    "word_en": "Fog",
+    "definition_en": "A thick mist that makes it hard to see. It's like a cloud close to the ground.",
+    "word_tr": "Sis",
+    "definition_tr": "Görmeyi zorlaştıran kalın bir pus. Yere yakın bir bulut gibidir."
+  },
+  {
+    "word_en": "Foggy",
+    "definition_en": "When there is a lot of fog.",
+    "word_tr": "Sisli",
+    "definition_tr": "Çok sis olduğunda."
+  },
+  {
+    "word_en": "Hail",
+    "definition_en": "Small, hard balls of ice that fall from the sky.",
+    "word_tr": "Dolu",
+    "definition_tr": "Gökten düşen küçük, sert buz topları."
+  },
+  {
+    "word_en": "Storm",
+    "definition_en": "Very bad weather with strong wind, rain, snow, or thunder and lightning.",
+    "word_tr": "Fırtına",
+    "definition_tr": "Şiddetli rüzgar, yağmur, kar veya gök gürültüsü ve şimşek ile çok kötü hava."
+  },
+  {
+    "word_en": "Stormy",
+    "definition_en": "When there is a storm.",
+    "word_tr": "Fırtınalı",
+    "definition_tr": "Fırtına olduğunda."
+  },
+  {
+    "word_en": "Weather forecast",
+    "definition_en": "A prediction of what the weather will be like in the future.",
+    "word_tr": "Hava durumu tahmini",
+    "definition_tr": "Gelecekte havanın nasıl olacağına dair bir tahmin."
+  },
+  {
+    "word_en": "Spring",
+    "definition_en": "The season after winter and before summer, when plants start to grow again.",
+    "word_tr": "İlkbahar",
+    "definition_tr": "Kıştan sonra ve yazdan önce, bitkilerin tekrar büyümeye başladığı mevsim."
+  },
+  {
+    "word_en": "Summer",
+    "definition_en": "The hottest season of the year, after spring and before autumn.",
+    "word_tr": "Yaz",
+    "definition_tr": "Yılın en sıcak mevsimi, ilkbahardan sonra ve sonbahardan önce."
+  },
+  {
+    "word_en": "Autumn (Fall)",
+    "definition_en": "The season after summer and before winter, when leaves change color and fall off trees.",
+    "word_tr": "Sonbahar",
+    "definition_tr": "Yazdan sonra ve kıştan önce, yaprakların renk değiştirdiği ve ağaçlardan döküldüğü mevsim."
+  },
+  {
+    "word_en": "Winter",
+    "definition_en": "The coldest season of the year, after autumn and before spring.",
+    "word_tr": "Kış",
+    "definition_tr": "Yılın en soğuk mevsimi, sonbahardan sonra ve ilkbahardan önce."
+  },
+  {
+    "word_en": "A tornado",
+    "definition_en": "A very strong wind that spins in a circle and moves over land, causing damage.",
+    "word_tr": "Hortum",
+    "definition_tr": "Bir daire içinde dönen ve karada hareket ederek hasara neden olan çok güçlü bir rüzgar."
+  },
+  {
+    "word_en": "A wildfire",
+    "definition_en": "A large fire that spreads quickly in a natural area like a forest or grassland.",
+    "word_tr": "Orman Yangını",
+    "definition_tr": "Orman veya otlak gibi doğal bir alanda hızla yayılan büyük bir yangın."
+  },
+  {
+    "word_en": "A flood",
+    "definition_en": "A large amount of water covering an area that is usually dry.",
+    "word_tr": "Sel",
+    "definition_tr": "Genellikle kuru olan bir alanı kaplayan büyük miktarda su."
+  },
+  {
+    "word_en": "An earthquake",
+    "definition_en": "A sudden shaking of the ground caused by movements inside the Earth.",
+    "word_tr": "Deprem",
+    "definition_tr": "Dünya'nın içindeki hareketlerden kaynaklanan ani yer sarsıntısı."
+  },
+  {
+    "word_en": "A blizzard",
+    "definition_en": "A very bad snowstorm with strong winds and heavy snow.",
+    "word_tr": "Kar Fırtınası / Tipi",
+    "definition_tr": "Şiddetli rüzgarlar ve yoğun kar yağışı ile çok kötü bir kar fırtınası."
+  },
+  {
+    "word_en": "A drought",
+    "definition_en": "A long period of time when there is very little or no rain.",
+    "word_tr": "Kuraklık",
+    "definition_tr": "Çok az veya hiç yağmurun olmadığı uzun bir süre."
+  },
+  {
+    "word_en": "A volcanic eruption",
+    "definition_en": "When a volcano sends out hot lava, ash, and gases.",
+    "word_tr": "Volkanik Patlama",
+    "definition_tr": "Bir yanardağın sıcak lav, kül ve gazlar püskürttüğü zaman."
+  },
+  {
+    "word_en": "A tsunami",
+    "definition_en": "A very large wave caused by an earthquake or other disturbance under the sea.",
+    "word_tr": "Tsunami",
+    "definition_tr": "Deniz altındaki bir deprem veya başka bir rahatsızlıktan kaynaklanan çok büyük bir dalga."
+  },
+  {
+    "word_en": "A landslide",
+    "definition_en": "The sliding down of a large amount of soil, rocks, etc., down a slope.",
+    "word_tr": "Heyelan / Toprak Kayması",
+    "definition_tr": "Büyük miktarda toprak, kaya vb.'nin bir yamaçtan aşağı kayması."
+  },
+  {
+    "word_en": "A firefighter",
+    "definition_en": "A person whose job is to stop fires from burning and to rescue people from dangerous situations involving fire.",
+    "word_tr": "İtfaiyeci",
+    "definition_tr": "İşi yangınların yanmasını durdurmak ve yangın içeren tehlikeli durumlardan insanları kurtarmak olan kişi."
+  },
+  {
+    "word_en": "A police officer",
+    "definition_en": "A member of the police force whose job is to enforce laws, prevent crime, and maintain order.",
+    "word_tr": "Polis memuru",
+    "definition_tr": "İşi yasaları uygulamak, suçu önlemek ve düzeni sağlamak olan polis teşkilatının bir üyesi."
+  },
+  {
+    "word_en": "A nurse",
+    "definition_en": "A person whose job is to care for sick or injured people, usually in a hospital or clinic.",
+    "word_tr": "Hemşire",
+    "definition_tr": "İşi genellikle bir hastanede veya klinikte hasta veya yaralı insanlara bakmak olan kişi."
+  },
+  {
+    "word_en": "A paramedic",
+    "definition_en": "A person who is trained to give medical help to people who are seriously ill or injured before they arrive at a hospital.",
+    "word_tr": "Paramedik / Acil Tıp Teknisyeni",
+    "definition_tr": "Ciddi derecede hasta veya yaralı insanlara hastaneye varmadan önce tıbbi yardım vermek üzere eğitilmiş kişi."
+  },
+  {
+    "word_en": "A coast guard",
+    "definition_en": "A person who is part of a military organization that protects the coast of a country and helps people who are in danger at sea.",
+    "word_tr": "Sahil Güvenlik",
+    "definition_tr": "Bir ülkenin sahilini koruyan ve denizde tehlikede olan insanlara yardım eden askeri bir organizasyonun parçası olan kişi."
+  },
+  {
+    "word_en": "A vet (veterinarian)",
+    "definition_en": "A doctor who is trained to give medical care to animals.",
+    "word_tr": "Veteriner",
+    "definition_tr": "Hayvanlara tıbbi bakım vermek üzere eğitilmiş bir doktor."
+  },
+  {
+    "word_en": "School",
+    "definition_en": "A place where children learn.",
+    "word_tr": "Okul",
+    "definition_tr": "Çocukların öğrendiği bir yer."
+  },
+  {
+    "word_en": "Playground",
+    "definition_en": "An outdoor area with equipment for children to play.",
+    "word_tr": "Oyun Alanı",
+    "definition_tr": "Çocukların oynaması için ekipmanların bulunduğu açık bir alan."
+  },
+  {
+    "word_en": "Bookstore",
+    "definition_en": "A shop where you can buy books.",
+    "word_tr": "Kitapçı",
+    "definition_tr": "Kitap satın alabileceğiniz bir dükkan."
+  },
+  {
+    "word_en": "Bus Station",
+    "definition_en": "A place where buses stop to pick up and drop off people.",
+    "word_tr": "Otogar / Otobüs Durağı",
+    "definition_tr": "Otobüslerin insanları almak ve indirmek için durduğu bir yer."
+  },
+  {
+    "word_en": "Hospital",
+    "definition_en": "A building where sick or injured people receive medical care.",
+    "word_tr": "Hastane",
+    "definition_tr": "Hasta veya yaralı insanların tıbbi bakım aldığı bir bina."
+  },
+  {
+    "word_en": "Fire Station",
+    "definition_en": "A building where firefighters and fire trucks are kept.",
+    "word_tr": "İtfaiye İstasyonu",
+    "definition_tr": "İtfaiyecilerin ve itfaiye araçlarının tutulduğu bir bina."
+  },
+  {
+    "word_en": "Police Station",
+    "definition_en": "A building where police officers work.",
+    "word_tr": "Polis Merkezi / Karakol",
+    "definition_tr": "Polis memurlarının çalıştığı bir bina."
+  },
+  {
+    "word_en": "Veterinary Clinic",
+    "definition_en": "A place where doctors care for sick animals.",
+    "word_tr": "Veteriner Kliniği",
+    "definition_tr": "Doktorların hasta hayvanlara baktığı bir yer."
+  },
+  {
+    "word_en": "Pharmacy",
+    "definition_en": "A shop where you can buy medicines.",
+    "word_tr": "Eczane",
+    "definition_tr": "İlaç satın alabileceğiniz bir dükkan."
+  },
+  {
+    "word_en": "Airport",
+    "definition_en": "A place where airplanes take off and land.",
+    "word_tr": "Havalimanı",
+    "definition_tr": "Uçakların kalktığı ve indiği bir yer."
+  },
+  {
+    "word_en": "Sports Center",
+    "definition_en": "A building where people can play different sports.",
+    "word_tr": "Spor Merkezi",
+    "definition_tr": "İnsanların farklı sporlar yapabileceği bir bina."
+  },
+  {
+    "word_en": "A movie theater",
+    "definition_en": "A place where you can watch films on a big screen.",
+    "word_tr": "Sinema Salonu",
+    "definition_tr": "Büyük bir ekranda film izleyebileceğiniz bir yer."
+  },
+  {
+    "word_en": "A toy shop",
+    "definition_en": "A store that sells toys for children",
+    "word_tr": "Oyuncakçı Dükkanı",
+    "definition_tr": "Çocuklar için oyuncak satan bir mağaza"
+  },
+  {
+    "word_en": "A coffee shop",
+    "definition_en": "A place where you can buy and drink coffee and sometimes other drinks and snacks.",
+    "word_tr": "Kahve Dükkanı",
+    "definition_tr": "Kahve ve bazen diğer içecekleri ve atıştırmalıkları alıp içebileceğiniz bir yer."
+  },
+  {
+    "word_en": "A restaurant",
+    "definition_en": "A place where you can sit down and eat a meal that someone else has cooked.",
+    "word_tr": "Restoran",
+    "definition_tr": "Oturup başkasının pişirdiği bir yemeği yiyebileceğiniz bir yer."
   }
-] 
+]
