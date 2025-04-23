@@ -34,7 +34,6 @@ const styles = {
   },
   greeting: {
     marginBottom: '10px',
-    color: '#555'
   },
   heading: {
     marginBottom: '30px'
