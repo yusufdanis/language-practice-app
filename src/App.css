@@ -34,7 +34,6 @@ body {
 .logo,
 .logo:hover,
 .logo.react:hover,
-@keyframes logo-spin,
 .card,
 .read-the-docs,
 a:nth-of-type(2) .logo {
@@ -65,7 +64,7 @@ button {
   font-family: inherit;
   background-color: #1a1a1a;
   cursor: pointer;
-  transition: border-color 0.25s, background-color 0.25s;
+  transition: border-color 0.5s, background-color 0.5s;
   color: inherit; /* Inherit color based on theme */
 }
 button:hover {
@@ -164,19 +163,33 @@ button:disabled {
 }
 
 /* Question Button States */
-.option-button {
-    /* Base style is default button */
-}
-
 .option-button-correct {
     background-color: #28a745; /* Green */
     color: white;
     border: 2px solid #155724;
 }
 
+/* Add rule to keep color when disabled */
+.option-button-correct:disabled {
+    background-color: #28a745; /* Keep Green */
+    color: white;
+    opacity: 0.7; /* Slightly fade to indicate disabled */
+    cursor: not-allowed;
+    border: 2px solid #155724;
+}
+
 .option-button-incorrect-selected {
     background-color: #dc3545; /* Red */
     color: white;
+    border: 2px solid #721c24;
+}
+
+/* Add rule to keep color when disabled */
+.option-button-incorrect-selected:disabled {
+    background-color: #dc3545; /* Keep Red */
+    color: white;
+    opacity: 0.7; /* Slightly fade to indicate disabled */
+    cursor: not-allowed;
     border: 2px solid #721c24;
 }
 
@@ -219,5 +232,18 @@ button:disabled {
   .button-pass:hover {
     border-color: #bbb;
     background-color: #d4d4d4;
+  }
+  /* Keep colors for disabled correct/incorrect in light theme */
+  .option-button-correct:disabled {
+      background-color: #28a745;
+      color: white;
+      opacity: 0.7;
+      border: 2px solid #155724;
+  }
+  .option-button-incorrect-selected:disabled {
+      background-color: #dc3545;
+      color: white;
+      opacity: 0.7;
+      border: 2px solid #721c24;
   }
 }
