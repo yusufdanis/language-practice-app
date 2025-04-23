@@ -56,7 +56,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   // Effect to scroll to the next button when feedback is shown
   useEffect(() => {
     if (isAnswered && nextButtonRef.current) {
-      nextButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      nextButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'end' });
     }
   }, [isAnswered]); // Dependency: run when isAnswered changes
 
