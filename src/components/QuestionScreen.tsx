@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { VocabularyItem } from '../types';
 import { shuffleArray } from '../utils/shuffle'; // Import from utils
 
-// Define the structure for feedback info, adding labels and English word
+// Define the structure for feedback info, adding labels and English word/definition
 interface FeedbackDetail {
   label?: string; // Optional label (e.g., 'Your Answer', 'Correct Answer')
   word_en: string;
   word_tr: string;
+  definition_en: string; // Add English definition
   definition_tr: string;
 }
 
@@ -68,6 +69,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         label: 'Correct Answer',
         word_en: correctWordItem.word_en,
         word_tr: correctWordItem.word_tr,
+        definition_en: correctWordItem.definition_en, // Add English definition
         definition_tr: correctWordItem.definition_tr
       });
     } else if (word === correctWordItem.word_en) { // Correct
@@ -75,6 +77,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
       feedback.push({
         word_en: correctWordItem.word_en,
         word_tr: correctWordItem.word_tr,
+        definition_en: correctWordItem.definition_en, // Add English definition
         definition_tr: correctWordItem.definition_tr
       });
     } else { // Incorrect
@@ -85,6 +88,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
           label: 'Your Answer',
           word_en: selectedWordItem.word_en, // Add English word
           word_tr: selectedWordItem.word_tr,
+          definition_en: selectedWordItem.definition_en, // Add English definition
           definition_tr: selectedWordItem.definition_tr
         });
       }
@@ -92,6 +96,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         label: 'Correct Answer',
         word_en: correctWordItem.word_en, // Add English word
         word_tr: correctWordItem.word_tr,
+        definition_en: correctWordItem.definition_en, // Add English definition
         definition_tr: correctWordItem.definition_tr
       });
     }
@@ -181,8 +186,10 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                   {/* Show English and Turkish word */}
                   <span className="feedback-word-en">{info.word_en}</span>{' '}
                   (<span className="feedback-word-tr">{info.word_tr}</span>)
+                  {/* Show English definition */}
+                  <p className="feedback-definition-en">EN: {info.definition_en}</p>
                   {/* Show Turkish definition */}
-                  <p className="feedback-definition-tr">{info.definition_tr}</p>
+                  <p className="feedback-definition-tr">TR: {info.definition_tr}</p>
                 </div>
               ))}
             </div>
