@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { VocabularyItem } from '../types';
 import { shuffleArray } from '../utils/shuffle'; // Import from utils
 
-// Define the structure for feedback info
+// Define the structure for feedback info, adding labels and English word
 interface FeedbackDetail {
+  label?: string; // Optional label (e.g., 'Your Answer', 'Correct Answer')
+  word_en: string;
   word_tr: string;
   definition_tr: string;
 }
@@ -29,12 +31,14 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [feedbackInfo, setFeedbackInfo] = useState<FeedbackDetail[]>([]);
+  const [feedbackMessage, setFeedbackMessage] = useState<string>(''); // State for feedback message
 
   // Reset state when the question item changes (new question loaded)
   useEffect(() => {
     setIsAnswered(false);
     setSelectedWord(null);
     setFeedbackInfo([]);
+    setFeedbackMessage(''); // Reset feedback message
 
     // Generate options
     const correctWord = questionItem.word_en;
@@ -56,19 +60,43 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
 
     const correctWordItem = questionItem; // This is the correct item
     let feedback: FeedbackDetail[] = [];
+    let message = '';
 
     if (word === null) { // Passed
-      feedback.push({ word_tr: correctWordItem.word_tr, definition_tr: correctWordItem.definition_tr });
+      message = 'Passed. The correct answer was:';
+      feedback.push({
+        label: 'Correct Answer',
+        word_en: correctWordItem.word_en,
+        word_tr: correctWordItem.word_tr,
+        definition_tr: correctWordItem.definition_tr
+      });
     } else if (word === correctWordItem.word_en) { // Correct
-      feedback.push({ word_tr: correctWordItem.word_tr, definition_tr: correctWordItem.definition_tr });
+      message = 'Correct! Well done!';
+      feedback.push({
+        word_en: correctWordItem.word_en,
+        word_tr: correctWordItem.word_tr,
+        definition_tr: correctWordItem.definition_tr
+      });
     } else { // Incorrect
+      message = 'Incorrect.';
       const selectedWordItem = allVocabulary.find(item => item.word_en === word);
       if (selectedWordItem) {
-        feedback.push({ word_tr: selectedWordItem.word_tr, definition_tr: selectedWordItem.definition_tr });
+        feedback.push({
+          label: 'Your Answer',
+          word_en: selectedWordItem.word_en, // Add English word
+          word_tr: selectedWordItem.word_tr,
+          definition_tr: selectedWordItem.definition_tr
+        });
       }
-      feedback.push({ word_tr: correctWordItem.word_tr, definition_tr: correctWordItem.definition_tr });
+      feedback.push({
+        label: 'Correct Answer',
+        word_en: correctWordItem.word_en, // Add English word
+        word_tr: correctWordItem.word_tr,
+        definition_tr: correctWordItem.definition_tr
+      });
     }
     setFeedbackInfo(feedback);
+    setFeedbackMessage(message); // Set the feedback message
   };
 
   // Determine the CSS class for an option button based on the answer state
@@ -142,9 +170,19 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
             </button>
 
             <div className="feedback-area">
+              {/* Display the feedback message */}
+              {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
+
+              {/* Display detailed feedback */}
               {feedbackInfo.map((info, index) => (
                 <div key={index} className="feedback-item">
-                  <strong>{info.word_tr}</strong>: {info.definition_tr}
+                  {/* Add label if present */}
+                  {info.label && <strong className="feedback-label">{info.label}: </strong>}
+                  {/* Show English and Turkish word */}
+                  <span className="feedback-word-en">{info.word_en}</span>{' '}
+                  (<span className="feedback-word-tr">{info.word_tr}</span>)
+                  {/* Show Turkish definition */}
+                  <p className="feedback-definition-tr">{info.definition_tr}</p>
                 </div>
               ))}
             </div>
