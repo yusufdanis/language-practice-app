@@ -10,7 +10,7 @@ const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart }) => {
       <h1>Welcome to the English Vocabulary Practice App!</h1>
       <p>Ready to test your knowledge?</p>
       <button onClick={onStart} className="button-start">
-        Let's Start
+        Let's Start 🚀
       </button>
     </div>
   );

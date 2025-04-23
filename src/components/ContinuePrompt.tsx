@@ -15,13 +15,13 @@ const ContinuePrompt: React.FC<ContinuePromptProps> = ({ onContinue, onStop }) =
           onClick={onContinue}
           className="button-continue-yes"
         >
-          Yes
+          Yes ✅
         </button>
         <button
           onClick={onStop}
           className="button-continue-no"
         >
-          No
+          No ❌
         </button>
       </div>
     </div>

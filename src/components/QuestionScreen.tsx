@@ -73,7 +73,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     let message = '';
 
     if (word === null) { // Passed
-      message = 'Passed. The correct answer was:';
+      message = 'Passed. The correct answer was: 💡';
       feedback.push({
         label: 'Correct Answer',
         word_en: correctWordItem.word_en,
@@ -82,7 +82,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         definition_tr: correctWordItem.definition_tr
       });
     } else if (word === correctWordItem.word_en) { // Correct
-      message = 'Correct! Well done!';
+      message = 'Correct! Well done! ✅';
       feedback.push({
         word_en: correctWordItem.word_en,
         word_tr: correctWordItem.word_tr,
@@ -90,7 +90,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         definition_tr: correctWordItem.definition_tr
       });
     } else { // Incorrect
-      message = 'Incorrect.';
+      message = 'Incorrect. 🤔';
       const selectedWordItem = allVocabulary.find(item => item.word_en === word);
       if (selectedWordItem) {
         feedback.push({
@@ -162,7 +162,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
               className={getPassButtonClass()}
               disabled={isAnswered}
             >
-              Pass
+              Pass ⏭️
             </button>
           </>
         ) : (
@@ -180,7 +180,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
               className={getPassButtonClass()}
               disabled={true}
             >
-              Pass
+              Pass ⏭️
             </button>
 
             <div className="feedback-area">
@@ -209,7 +209,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 onClick={onNextQuestion}
                 className="button-next"
               >
-                Next Question
+                Next Question 👉
               </button>
             </div>
           </>
