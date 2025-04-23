@@ -37,18 +37,24 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ score, onStartAgain, onCh
       <p style={{ fontStyle: 'italic', marginTop: '15px' }}>
           {message}
       </p>
-      <div style={{ marginTop: '25px', display: 'flex', gap: '15px' }}>
+      <div style={{
+          marginTop: '25px',
+          display: 'flex', 
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '15px'
+      }}>
           <button
             onClick={onStartAgain}
             className="button-start"
-            style={{ fontSize: '1em'}}
+            style={{ fontSize: '1em', width: '200px'}}
           >
             Start Again ({language === 'en' ? 'English' : 'German'}) 🔄
           </button>
           <button
             onClick={onChangeLanguage}
             className="button-secondary"
-            style={{ fontSize: '1em'}}
+            style={{ fontSize: '1em', width: '200px'}}
           >
             Change Language 🌐
           </button>
