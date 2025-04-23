@@ -1,19 +1,21 @@
 import React from 'react';
+import { Language, Score } from '../types';
 
 interface ResultsScreenProps {
-  score: {
-    correct: number;
-    incorrect: number;
-  };
+  score: Score;
   onStartAgain: () => void;
+  onChangeLanguage: () => void;
+  language: Language;
 }
 
-const ResultsScreen: React.FC<ResultsScreenProps> = ({ score, onStartAgain }) => {
-  const totalQuestions = score.correct + score.incorrect;
-  const percentage = totalQuestions > 0 ? Math.round((score.correct / totalQuestions) * 100) : 0;
+const ResultsScreen: React.FC<ResultsScreenProps> = ({ score, onStartAgain, onChangeLanguage, language }) => {
+  const totalAnswered = score.correct + score.incorrect;
+  const percentage = totalAnswered > 0 ? Math.round((score.correct / totalAnswered) * 100) : 0;
 
   let message = "Keep practicing! 🤔📚";
-  if (percentage === 100) {
+  if (totalAnswered === 0) {
+    message = "Ready to try again?";
+  } else if (percentage === 100) {
     message = "Perfect score! Amazing job! 🎉💯";
   } else if (percentage >= 80) {
     message = "Great work! You're doing really well! 👍✨";
@@ -27,18 +29,30 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ score, onStartAgain }) =>
       <p style={{ fontSize: '1.2em', fontWeight: 'bold' }}>
           Correct: ✅ {score.correct} / Incorrect: ❌ {score.incorrect}
       </p>
-      <p style={{ fontSize: '1.1em' }}>
-          ({percentage}% Correct)
-      </p>
-      <p style={{ fontStyle: 'italic' }}>
+      {totalAnswered > 0 && (
+          <p style={{ fontSize: '1.1em' }}>
+              ({percentage}% Correct)
+          </p>
+      )}
+      <p style={{ fontStyle: 'italic', marginTop: '15px' }}>
           {message}
       </p>
-      <button
-        onClick={onStartAgain}
-        className="button-start"
-      >
-        Start Again 🔄
-      </button>
+      <div style={{ marginTop: '25px', display: 'flex', gap: '15px' }}>
+          <button
+            onClick={onStartAgain}
+            className="button-start"
+            style={{ fontSize: '1em'}}
+          >
+            Start Again ({language === 'en' ? 'English' : 'German'}) 🔄
+          </button>
+          <button
+            onClick={onChangeLanguage}
+            className="button-secondary"
+            style={{ fontSize: '1em'}}
+          >
+            Change Language 🌐
+          </button>
+      </div>
     </div>
   );
 };
