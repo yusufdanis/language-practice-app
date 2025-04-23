@@ -11,7 +11,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage })
       <h2 style={styles.heading}>Choose Your Practice Language</h2>
       <div className="language-options" style={styles.optionsContainer}>
         <button style={styles.button} onClick={() => onSelectLanguage('en')}>
-          English Practice <span role="img" aria-label="UK flag">🇬🇧</span> / <span role="img" aria-label="US flag">🇺🇸</span>
+          English Practice <span role="img" aria-label="UK flag">🇬🇧</span>
         </button>
         <button style={styles.button} onClick={() => onSelectLanguage('de')}>
           German Practice <span role="img" aria-label="Germany flag">🇩🇪</span>
