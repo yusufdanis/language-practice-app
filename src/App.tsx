@@ -11,6 +11,12 @@ import { shuffleArray } from './utils/shuffle'
 // Define possible application states
 type AppState = 'welcome' | 'playing' | 'promptContinue' | 'results' | 'loading' | 'error'
 
+// Define score structure
+interface Score {
+  correct: number;
+  incorrect: number;
+}
+
 function App() {
   // State to manage the current view of the application
   const [appState, setAppState] = useState<AppState>('loading')
@@ -22,8 +28,8 @@ function App() {
   // --- Session State ---
   const [currentSessionQuestions, setCurrentSessionQuestions] = useState<VocabularyItem[]>([])
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0)
-  const [lastSessionScore, setLastSessionScore] = useState<{ correct: number; incorrect: number } | null>(null)
-  const [currentScore, setCurrentScore] = useState<{ correct: number; incorrect: number }>({ correct: 0, incorrect: 0 })
+  // Use a single state for cumulative score across sessions
+  const [cumulativeScore, setCumulativeScore] = useState<Score>({ correct: 0, incorrect: 0 })
   // ---------------------
 
   // Effect to load data when the component mounts
@@ -50,24 +56,25 @@ function App() {
     }
   }, []) // Empty dependency array means this runs once on mount
 
-  // Function to initialize a new session
-  const startNewSession = () => {
+  // Function to initialize a new 10-question round
+  // Does NOT reset the cumulative score
+  const startNewSessionRound = () => {
     if (vocabulary.length < 10) {
-      // This check is redundant if the initial load worked, but good practice
-      setError('Cannot start a new session, not enough vocabulary data loaded.')
+      setError('Cannot start a new session round, not enough vocabulary data loaded.')
       setAppState('error')
       return
     }
     const sessionQuestions = shuffleArray(vocabulary).slice(0, 10)
     setCurrentSessionQuestions(sessionQuestions)
     setCurrentQuestionIndex(0)
-    setCurrentScore({ correct: 0, incorrect: 0 })
+    // Do not reset cumulativeScore here
     setAppState('playing')
   }
 
-  // Update handleStart to call startNewSession
-  const handleStart = () => {
-    startNewSession() // Initialize the first session
+  // Function to start a completely fresh game, resetting score
+  const handleStartFresh = () => {
+    setCumulativeScore({ correct: 0, incorrect: 0 }) // Reset score
+    startNewSessionRound() // Start the first round
   }
 
   // Handles moving to the next question or triggering the continue prompt
@@ -75,13 +82,13 @@ function App() {
     if (currentQuestionIndex < currentSessionQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1)
     } else {
-      // Last question answered, save score and show prompt
-      setLastSessionScore(currentScore)
+      // Last question answered, just show prompt
+      // No need to save lastSessionScore anymore
       setAppState('promptContinue')
     }
   }
 
-  // Updates score when an answer is selected in QuestionScreen
+  // Updates cumulative score when an answer is selected in QuestionScreen
   const handleAnswerSelected = (selectedWord: string | null) => {
     const currentQuestion = currentSessionQuestions[currentQuestionIndex]
     const isCorrect = selectedWord === currentQuestion.word_en
@@ -89,22 +96,24 @@ function App() {
 
     if (!isPass) {
       if (isCorrect) {
-        setCurrentScore(prev => ({ ...prev, correct: prev.correct + 1 }))
+        setCumulativeScore(prev => ({ ...prev, correct: prev.correct + 1 }))
       } else {
-        setCurrentScore(prev => ({ ...prev, incorrect: prev.incorrect + 1 }))
+        setCumulativeScore(prev => ({ ...prev, incorrect: prev.incorrect + 1 }))
       }
     }
-    console.log(`Answer Selected: ${selectedWord ?? 'Passed'}, Correct: ${isCorrect}`)
+    // Optional: console log for debugging
+    // console.log(`Cumulative Score Updated: C: ${cumulativeScore.correct}, I: ${cumulativeScore.incorrect}`)
   }
 
   // Handler for clicking "Yes" on the continue prompt
   const handleContinueYes = () => {
-    startNewSession() // Start a new 10-question session
+    startNewSessionRound() // Start a new round *without* resetting score
   }
 
   // Handler for clicking "No" on the continue prompt
   const handleContinueNo = () => {
-    setAppState('results') // Go to the results screen
+    // Go to the results screen, which will now use cumulativeScore
+    setAppState('results')
   }
 
   // Render based on state
@@ -119,7 +128,7 @@ function App() {
   return (
     <div className="App">
       {/* Conditionally render components based on the app state */}
-      {appState === 'welcome' && <WelcomeScreen onStart={handleStart} />}
+      {appState === 'welcome' && <WelcomeScreen onStart={handleStartFresh} />}
 
       {/* Render the playing state using QuestionScreen */}
       {appState === 'playing' && currentSessionQuestions.length > 0 && (
@@ -142,10 +151,10 @@ function App() {
       )}
 
       {/* Render the results state using ResultsScreen */}
-      {appState === 'results' && lastSessionScore && (
+      {appState === 'results' && (
         <ResultsScreen
-          score={lastSessionScore} // Pass the score of the last completed session
-          onStartAgain={handleStart} // Reuse handleStart for the button
+          score={cumulativeScore} // Pass the cumulative score
+          onStartAgain={handleStartFresh} // Reset score and start fresh
         />
       )}
     </div>
