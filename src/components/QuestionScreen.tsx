@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { VocabularyItem } from '../types';
 import { shuffleArray } from '../utils/shuffle'; // Import from utils
 
@@ -33,6 +33,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   const [selectedWord, setSelectedWord] = useState<string | null>(null);
   const [feedbackInfo, setFeedbackInfo] = useState<FeedbackDetail[]>([]);
   const [feedbackMessage, setFeedbackMessage] = useState<string>(''); // State for feedback message
+  const nextButtonRef = useRef<HTMLDivElement>(null); // Ref for the Next Question button container
 
   // Reset state when the question item changes (new question loaded)
   useEffect(() => {
@@ -51,6 +52,13 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     setOptions(allOptions);
 
   }, [questionItem, allVocabulary]);
+
+  // Effect to scroll to the next button when feedback is shown
+  useEffect(() => {
+    if (isAnswered && nextButtonRef.current) {
+      nextButtonRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  }, [isAnswered]); // Dependency: run when isAnswered changes
 
   const handleOptionClick = (word: string | null) => {
     if (isAnswered) return; // Do nothing if already answered
@@ -194,12 +202,15 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
               ))}
             </div>
 
-            <button
-              onClick={onNextQuestion}
-              className="button-next"
-            >
-              Next Question
-            </button>
+            {/* Wrap the button in a div with ref and style for margin */}
+            <div ref={nextButtonRef} style={{ marginTop: '20px', marginBottom: '40px' }}> 
+              <button
+                onClick={onNextQuestion}
+                className="button-next"
+              >
+                Next Question
+              </button>
+            </div>
           </>
         )}
       </div>
