@@ -8,6 +8,7 @@ interface LanguageSelectorProps {
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
   return (
     <div className="language-selector" style={styles.selectorContainer}>
+      <h1 style={styles.greeting}>Hello Zeynep <span style={{color: 'red'}}>❤️</span></h1>
       <h2 style={styles.heading}>Choose Your Practice Language</h2>
       <div className="language-options" style={styles.optionsContainer}>
         <button style={styles.button} onClick={() => onSelectLanguage('en')}>
@@ -30,6 +31,10 @@ const styles = {
     justifyContent: 'center',
     height: '100vh', /* Full viewport height */
     textAlign: 'center' as 'center' // Explicit type assertion
+  },
+  greeting: {
+    marginBottom: '10px',
+    color: '#555'
   },
   heading: {
     marginBottom: '30px'
