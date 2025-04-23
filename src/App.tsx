@@ -43,7 +43,7 @@ function App() {
     try {
       let dataModule;
       if (language === 'en') {
-        dataModule = await import('./data/definitions.json')
+        dataModule = await import('./data/definitions_en.json')
       } else { // language === 'de'
         dataModule = await import('./data/definitions_de.json')
       }
