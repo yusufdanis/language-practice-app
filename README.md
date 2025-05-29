@@ -4,6 +4,8 @@
 
 This is a simple vocabulary practice application designed to help my niece, Zeynep ❤️, with her German and English language learning. The app presents definitions and asks her to choose the correct word from a set of options.
 
+**✨ Live Demo: [zeynep.yusufdanis.com](https://zeynep.yusufdanis.com) ✨**
+
 ## Overview
 
 The main goal of this app is to provide a fun and engaging way for Zeynep to build her vocabulary in both German and English. It uses a local data file (`definitions.json`) for the word list and their translations/definitions.
