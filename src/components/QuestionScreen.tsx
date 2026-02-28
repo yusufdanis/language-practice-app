@@ -108,7 +108,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     }
 
     if (selectedOption === null) {
-        message = 'Passed. The correct answer was: 💡';
+        message = '💡 Passed. The correct answer was:';
         if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
             feedback.push({
                 label: 'Correct Answer',
@@ -131,7 +131,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
             });
         }
     } else if (isCorrect) {
-        message = 'Correct! Well done! ✅';
+        message = '✅ Correct! Well done!';
         if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
             feedback.push({
                 word_en: questionItem.word_en,
@@ -151,7 +151,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
             });
         }
     } else {
-        message = 'Incorrect. 🤔';
+        message = '🤔 Incorrect.';
         if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
             const selectedWordItem = allVocabulary.find(item => 
                 isEnglishVocabularyItem(item) && item.word_en === selectedOption
