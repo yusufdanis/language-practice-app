@@ -288,12 +288,6 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 {option}
               </button>
             ))}
-            <button
-              className={getPassButtonClass()}
-              disabled={true}
-            >
-              Pass ⏭️
-            </button>
 
             <div className="feedback-area">
               {feedbackMessage && <p className="feedback-message">{feedbackMessage}</p>}
