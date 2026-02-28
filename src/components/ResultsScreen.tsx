@@ -49,7 +49,7 @@ const ResultsScreen: React.FC<ResultsScreenProps> = ({ score, onStartAgain, onCh
             className="button-start"
             style={{ fontSize: '1em', width: '200px'}}
           >
-            Start Again ({language === 'en' ? 'English' : 'German'}) 🔄
+            Start Again ({language === 'en' ? 'April 2025' : language === 'en_words' ? 'February 2026' : 'German'}) 🔄
           </button>
           <button
             onClick={onChangeLanguage}

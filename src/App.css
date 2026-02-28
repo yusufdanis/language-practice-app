@@ -81,6 +81,28 @@ button:disabled {
     border-color: #555;
 }
 
+/* Home Button */
+.home-button {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 100;
+  padding: 6px 10px;
+  font-size: 1.3em;
+  background-color: rgba(50, 50, 50, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  cursor: pointer;
+  line-height: 1;
+  backdrop-filter: blur(4px);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.home-button:hover {
+  background-color: rgba(80, 80, 80, 0.9);
+  transform: scale(1.1);
+  border-color: #646cff;
+}
+
 /* Component Specific Styles */
 
 /* Centering container for screens */
@@ -229,6 +251,13 @@ button:disabled {
   .button-pass:hover {
     border-color: #bbb;
     background-color: #d4d4d4;
+  }
+  .home-button {
+    background-color: rgba(240, 240, 240, 0.85);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  .home-button:hover {
+    background-color: rgba(220, 220, 220, 0.95);
   }
   /* Keep colors for disabled correct/incorrect in light theme */
   .option-button-correct:disabled {

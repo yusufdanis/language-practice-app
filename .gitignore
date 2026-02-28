@@ -126,4 +126,5 @@ Icon?
 dist
 .vite
 
-
+# Docs
+.docs/

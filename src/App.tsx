@@ -5,14 +5,11 @@ import QuestionScreen from './components/QuestionScreen'
 import ContinuePrompt from './components/ContinuePrompt'
 import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
-import { VocabularyItem, isEnglishVocabularyItem, isGermanVocabularyItem } from './types'
+import EnglishModeSelector from './components/EnglishModeSelector'
+import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isGermanVocabularyItem } from './types'
 import { shuffleArray } from './utils/shuffle'
 
-// Define possible languages
-import { Language } from './types'
-
-// Define possible application states
-type AppState = 'selectingLanguage' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -36,25 +33,34 @@ function App() {
   const [cumulativeScore, setCumulativeScore] = useState<Score>({ correct: 0, incorrect: 0 })
   // ---------------------
 
-  // Function to load data based on selected language
+  const handleLanguageSelect = (language: Language) => {
+    if (language === 'en') {
+      setAppState('selectingEnglishMode')
+    } else {
+      loadData(language)
+    }
+  }
+
   const loadData = async (language: Language) => {
     setAppState('loading')
     setError(null)
     try {
       let dataModule;
       if (language === 'en') {
-        dataModule = await import('./data/definitions_en.json')
-      } else { // language === 'de'
+        dataModule = await import('./data/definitions_en_april_2025.json')
+      } else if (language === 'en_words') {
+        dataModule = await import('./data/definitions_en_february_2026.json')
+      } else {
         dataModule = await import('./data/definitions_de.json')
       }
-      const data = dataModule.default as VocabularyItem[]; // Assume default export is the array
+      const data = dataModule.default as VocabularyItem[];
 
-      // Basic validation
-      if (Array.isArray(data) && data.length >= 10) { // Ensure at least 10 items
-        // Simple structure check for the first item based on language
+      if (Array.isArray(data) && data.length >= 10) {
         const firstItem = data[0];
         let isValid = false;
         if (language === 'en' && firstItem && 'word_en' in firstItem && 'definition_en' in firstItem) {
+           isValid = true;
+        } else if (language === 'en_words' && firstItem && 'word_en' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
         } else if (language === 'de' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
@@ -62,20 +68,20 @@ function App() {
 
         if (isValid) {
           setCurrentVocabulary(data)
-          setSelectedLanguage(language) // Set selected language
-          setAppState('welcome') // Transition to welcome screen
+          setSelectedLanguage(language)
+          setAppState('welcome')
         } else {
-          throw new Error(`Invalid data structure in definitions_${language}.json`)
+          throw new Error(`Invalid data structure in definitions file for mode: ${language}`)
         }
       } else {
-        throw new Error(`Insufficient data (< 10 items) or data is not an array in definitions_${language}.json`)
+        throw new Error(`Insufficient data (< 10 items) or data is not an array for mode: ${language}`)
       }
     } catch (err) {
       console.error("Failed to load vocabulary data:", err)
       setError(err instanceof Error ? err.message : 'An unknown error occurred while loading data.')
-      setAppState('error') // Transition to error state
-      setSelectedLanguage(null) // Reset language on error
-      setCurrentVocabulary([]) // Clear vocabulary on error
+      setAppState('error')
+      setSelectedLanguage(null)
+      setCurrentVocabulary([])
     }
   }
 
@@ -120,8 +126,9 @@ function App() {
     if (!isPass) {
       if (selectedLanguage === 'en' && isEnglishVocabularyItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_en
+      } else if (selectedLanguage === 'en_words' && isEnglishWordItem(currentQuestion)) {
+        isCorrect = selectedWord === currentQuestion.word_tr
       } else if (selectedLanguage === 'de' && isGermanVocabularyItem(currentQuestion)) {
-        // For German, the options and selectedWord are Turkish translations
         isCorrect = selectedWord === currentQuestion.word_tr
       }
 
@@ -168,11 +175,17 @@ function App() {
 
   return (
     <div className="App">
-      {/* Show Language Selector First */}
-      {appState === 'selectingLanguage' && <LanguageSelector onSelectLanguage={loadData} />}
+      {appState !== 'selectingLanguage' && (
+        <button className="home-button" onClick={handleChangeLanguage} title="Home">
+          🏠
+        </button>
+      )}
 
-      {/* Show Loading State */}
-      {appState === 'loading' && <div>Loading {selectedLanguage === 'en' ? 'English' : selectedLanguage === 'de' ? 'German' : ''} vocabulary...</div>}
+      {appState === 'selectingLanguage' && <LanguageSelector onSelectLanguage={handleLanguageSelect} />}
+
+      {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={loadData} />}
+
+      {appState === 'loading' && <div>Loading vocabulary...</div>}
 
       {/* Show Welcome Screen after data is loaded */}
       {appState === 'welcome' && selectedLanguage && (

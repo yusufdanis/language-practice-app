@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { VocabularyItem, Language, isEnglishVocabularyItem, isGermanVocabularyItem } from '../types';
+import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isGermanVocabularyItem } from '../types';
 import { shuffleArray } from '../utils/shuffle';
 
 interface FeedbackDetail {
@@ -52,6 +52,12 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         .filter(isEnglishVocabularyItem)
         .filter(item => item.word_en !== correctWord)
         .map(item => item.word_en);
+    } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+      correctWord = questionItem.word_tr;
+      distractors = allVocabulary
+        .filter(isEnglishWordItem)
+        .filter(item => item.word_tr !== correctWord)
+        .map(item => item.word_tr);
     } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
       correctWord = questionItem.word_tr;
       distractors = allVocabulary
@@ -95,6 +101,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     
     if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
         isCorrect = selectedOption === questionItem.word_en;
+    } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+        isCorrect = selectedOption === questionItem.word_tr;
     } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
         isCorrect = selectedOption === questionItem.word_tr;
     }
@@ -108,6 +116,12 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_tr: questionItem.word_tr,
                 definition_en: questionItem.definition_en,
                 definition_tr: questionItem.definition_tr
+            });
+        } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+            feedback.push({
+                label: 'Correct Answer',
+                word_en: questionItem.word_en,
+                word_tr: questionItem.word_tr
             });
         } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
             feedback.push({
@@ -124,6 +138,11 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_tr: questionItem.word_tr,
                 definition_en: questionItem.definition_en,
                 definition_tr: questionItem.definition_tr
+            });
+        } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+            feedback.push({
+                word_en: questionItem.word_en,
+                word_tr: questionItem.word_tr
             });
         } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
             feedback.push({
@@ -153,6 +172,22 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 definition_en: questionItem.definition_en,
                 definition_tr: questionItem.definition_tr
             });
+        } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+            const selectedWordItem = allVocabulary.find(item =>
+                isEnglishWordItem(item) && item.word_tr === selectedOption
+            );
+            if (selectedWordItem && isEnglishWordItem(selectedWordItem)) {
+                feedback.push({
+                    label: 'Your Answer',
+                    word_en: selectedWordItem.word_en,
+                    word_tr: selectedWordItem.word_tr
+                });
+            }
+            feedback.push({
+                label: 'Correct Answer',
+                word_en: questionItem.word_en,
+                word_tr: questionItem.word_tr
+            });
         } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
             const selectedWordItem = allVocabulary.find(item =>
                  isGermanVocabularyItem(item) && item.word_tr === selectedOption
@@ -181,6 +216,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     let isCorrectOption = false;
     if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
         isCorrectOption = option === questionItem.word_en;
+    } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+        isCorrectOption = option === questionItem.word_tr;
     } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
         isCorrectOption = option === questionItem.word_tr;
     }
@@ -201,6 +238,9 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   if (language === 'en' && isEnglishVocabularyItem(questionItem)) {
     questionPrompt = `"${questionItem.definition_en}"`;
     questionText = "Which word matches this definition?";
+  } else if (language === 'en_words' && isEnglishWordItem(questionItem)) {
+    questionPrompt = `"${questionItem.word_en}"`;
+    questionText = "Which is the correct Turkish translation?";
   } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
     questionPrompt = `"${questionItem.word_de}"`;
     questionText = "Which is the correct Turkish translation?";
@@ -268,6 +308,13 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                         <span className="feedback-word-tr">{info.word_tr}</span>)
                         <p className="feedback-definition-en">EN: {info.definition_en}</p>
                         <p className="feedback-definition-tr">TR: {info.definition_tr}</p>
+                      </>
+                  )}
+
+                  {language === 'en_words' && (
+                      <>
+                        <span className="feedback-word-en">{info.word_en}</span> = {' '}
+                        <span className="feedback-word-tr">{info.word_tr}</span>
                       </>
                   )}
                   
