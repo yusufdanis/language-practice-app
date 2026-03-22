@@ -1,6 +1,12 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from '../types';
 import { shuffleArray } from '../utils/shuffle';
+import { GameMode } from './GameModeSelector';
+
+function getAudioUrl(wordEn: string): string {
+  const filename = wordEn.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+  return `${import.meta.env.BASE_URL}audio/march_2026/${filename}.wav`;
+}
 
 interface FeedbackDetail {
   label?: string;
@@ -19,6 +25,7 @@ interface QuestionScreenProps {
   onAnswerSelected: (selectedWord: string | null) => void;
   onNextQuestion: () => void;
   language: Language;
+  gameMode: GameMode;
 }
 
 const QuestionScreen: React.FC<QuestionScreenProps> = ({
@@ -29,6 +36,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   onAnswerSelected,
   onNextQuestion,
   language,
+  gameMode,
 }) => {
   const [options, setOptions] = useState<string[]>([]);
   const [isAnswered, setIsAnswered] = useState<boolean>(false);
@@ -36,12 +44,36 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   const [feedbackInfo, setFeedbackInfo] = useState<FeedbackDetail[]>([]);
   const [feedbackMessage, setFeedbackMessage] = useState<string>('');
   const nextButtonRef = useRef<HTMLDivElement>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  const isSoundMode = gameMode === 'sound' && language === 'en_march_2026';
+
+  const playAudio = useCallback(() => {
+    if (isSoundMode && isEnglishDefinitionItem(questionItem)) {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      const audio = new Audio(getAudioUrl(questionItem.word_en));
+      audioRef.current = audio;
+      audio.play().catch(console.error);
+    }
+  }, [isSoundMode, questionItem]);
 
   useEffect(() => {
     setIsAnswered(false);
     setSelectedAnswer(null);
     setFeedbackInfo([]);
     setFeedbackMessage('');
+    // Stop any playing audio when question changes
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+
+    if (isSoundMode) {
+      const timer = setTimeout(playAudio, 300);
+      return () => clearTimeout(timer);
+    }
 
     let correctWord = '';
     let distractors: string[] = [];
@@ -279,7 +311,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     questionPrompt = `"${questionItem.word_en}"`;
     questionText = "Which is the correct Turkish translation?";
   } else if (language === 'en_march_2026' && isEnglishDefinitionItem(questionItem)) {
-    questionPrompt = `"${questionItem.definition_en}"`;
+    questionPrompt = isSoundMode ? '' : `"${questionItem.definition_en}"`;
     questionText = "Which word matches this definition?";
   } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
     questionPrompt = `"${questionItem.word_de}"`;
@@ -291,9 +323,33 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   return (
     <div className="screen-container">
       <h2>Question {questionNumber}/{totalQuestions}</h2>
-      <p style={{ fontStyle: 'italic', fontSize: '1.2em', margin: '20px' }}>
-        {questionPrompt}
-      </p>
+      {isSoundMode ? (
+        <div style={{ margin: '20px' }}>
+          <button
+            onClick={playAudio}
+            style={{
+              background: 'none',
+              border: '2px solid #007bff',
+              borderRadius: '50%',
+              width: '64px',
+              height: '64px',
+              fontSize: '2em',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}
+            title="Play again"
+          >
+            🔊
+          </button>
+          <p style={{ fontSize: '0.85em', opacity: 0.6, marginTop: '8px' }}>Tap to replay</p>
+        </div>
+      ) : (
+        <p style={{ fontStyle: 'italic', fontSize: '1.2em', margin: '20px' }}>
+          {questionPrompt}
+        </p>
+      )}
       <p>{questionText}</p>
 
       <div className="options-container">

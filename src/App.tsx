@@ -6,10 +6,12 @@ import ContinuePrompt from './components/ContinuePrompt'
 import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
 import EnglishModeSelector from './components/EnglishModeSelector'
+import GameModeSelector, { GameMode } from './components/GameModeSelector'
+import CardCountSelector from './components/CardCountSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
 
-type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -18,14 +20,12 @@ interface Score {
 }
 
 function App() {
-  // State to manage the current view of the application
   const [appState, setAppState] = useState<AppState>('selectingLanguage')
-  // State to store the selected language
   const [selectedLanguage, setSelectedLanguage] = useState<Language | null>(null)
-  // State to store the vocabulary data for the selected language
   const [currentVocabulary, setCurrentVocabulary] = useState<VocabularyItem[]>([])
-  // State to store potential error messages
   const [error, setError] = useState<string | null>(null)
+  const [gameMode, setGameMode] = useState<GameMode>('text')
+  const [cardCount, setCardCount] = useState<number>(10)
 
   // --- Session State ---
   const [currentSessionQuestions, setCurrentSessionQuestions] = useState<VocabularyItem[]>([])
@@ -41,7 +41,26 @@ function App() {
     }
   }
 
-  const loadData = async (language: Language) => {
+  const handleEnglishModeSelect = (language: Language) => {
+    if (language === 'en_march_2026') {
+      // Load data first, then show game mode selector
+      loadData(language, 'selectingGameMode')
+    } else {
+      loadData(language)
+    }
+  }
+
+  const handleGameModeSelect = (mode: GameMode) => {
+    setGameMode(mode)
+    setAppState('selectingCardCount')
+  }
+
+  const handleCardCountSelect = (count: number) => {
+    setCardCount(count)
+    setAppState('welcome')
+  }
+
+  const loadData = async (language: Language, nextState?: AppState) => {
     setAppState('loading')
     setError(null)
     try {
@@ -73,7 +92,7 @@ function App() {
         if (isValid) {
           setCurrentVocabulary(data)
           setSelectedLanguage(language)
-          setAppState('welcome')
+          setAppState(nextState || 'selectingCardCount')
         } else {
           throw new Error(`Invalid data structure in definitions file for mode: ${language}`)
         }
@@ -89,26 +108,23 @@ function App() {
     }
   }
 
-  // Function to initialize a new 10-question round for the selected language
   const startNewSessionRound = () => {
     if (currentVocabulary.length < 10 || !selectedLanguage) {
       setError('Cannot start a new session round, not enough vocabulary data loaded.')
       setAppState('error')
       return
     }
-    const sessionQuestions = selectPrioritizedQuestions(currentVocabulary, selectedLanguage, 10)
+    const sessionQuestions = selectPrioritizedQuestions(currentVocabulary, selectedLanguage, cardCount)
     setCurrentSessionQuestions(sessionQuestions)
     setCurrentQuestionIndex(0)
     setAppState('playing')
   }
 
-  // Function to start a completely fresh game, resetting score for the current language
   const handleStartFresh = () => {
-    setCumulativeScore({ correct: 0, incorrect: 0 }) // Reset score
-    startNewSessionRound() // Start the first round
+    setCumulativeScore({ correct: 0, incorrect: 0 })
+    startNewSessionRound()
   }
 
-  // Handles moving to the next question or triggering the continue prompt
   const handleNextQuestion = () => {
     if (currentQuestionIndex < currentSessionQuestions.length - 1) {
       setCurrentQuestionIndex(prev => prev + 1)
@@ -117,9 +133,8 @@ function App() {
     }
   }
 
-  // Updates cumulative score based on the selected language's logic
   const handleAnswerSelected = (selectedWord: string | null) => {
-    if (!selectedLanguage) return; // Should not happen in 'playing' state
+    if (!selectedLanguage) return;
 
     const currentQuestion = currentSessionQuestions[currentQuestionIndex]
     const isPass = selectedWord === null
@@ -146,17 +161,14 @@ function App() {
     }
   }
 
-  // Handler for clicking "Yes" on the continue prompt
   const handleContinueYes = () => {
-    startNewSessionRound() // Start a new round for the *same* language
+    startNewSessionRound()
   }
 
-  // Handler for clicking "No" on the continue prompt
   const handleContinueNo = () => {
     setAppState('results')
   }
 
-  // Handler to go back to language selection (optional, e.g., from results)
   const handleChangeLanguage = () => {
       setCurrentVocabulary([]);
       setSelectedLanguage(null);
@@ -164,17 +176,16 @@ function App() {
       setCurrentQuestionIndex(0);
       setCumulativeScore({ correct: 0, incorrect: 0 });
       setError(null);
+      setGameMode('text');
+      setCardCount(10);
       setAppState('selectingLanguage');
   }
 
-  // Render based on state
   if (appState === 'error') {
-    // Provide an option to retry or change language on error
     return (
         <div>
             <p>Error: {error}</p>
             <button onClick={() => setAppState('selectingLanguage')}>Change Language</button>
-            {/* Optional: Add a retry button if feasible */}
         </div>
     )
   }
@@ -189,33 +200,36 @@ function App() {
 
       {appState === 'selectingLanguage' && <LanguageSelector onSelectLanguage={handleLanguageSelect} />}
 
-      {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={loadData} />}
+      {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={handleEnglishModeSelect} />}
+
+      {appState === 'selectingGameMode' && <GameModeSelector onSelectMode={handleGameModeSelect} />}
+
+      {appState === 'selectingCardCount' && (
+        <CardCountSelector totalCards={currentVocabulary.length} onSelectCount={handleCardCountSelect} />
+      )}
 
       {appState === 'loading' && <div>Loading vocabulary...</div>}
 
-      {/* Show Welcome Screen after data is loaded */}
       {appState === 'welcome' && selectedLanguage && (
-        <WelcomeScreen 
-            onStart={handleStartFresh} 
-            language={selectedLanguage} // Pass language to customize message
+        <WelcomeScreen
+            onStart={handleStartFresh}
+            language={selectedLanguage}
         />
       )}
 
-      {/* Render the playing state using QuestionScreen */}
       {appState === 'playing' && selectedLanguage && currentSessionQuestions.length > 0 && (
         <QuestionScreen
-          // Ensure the questionItem passed matches the expected structure based on language
           questionItem={currentSessionQuestions[currentQuestionIndex]}
-          allVocabulary={currentVocabulary} // Pass the full list for generating distractors
+          allVocabulary={currentVocabulary}
           questionNumber={currentQuestionIndex + 1}
           totalQuestions={currentSessionQuestions.length}
           onAnswerSelected={handleAnswerSelected}
           onNextQuestion={handleNextQuestion}
-          language={selectedLanguage} // Pass selected language
+          language={selectedLanguage}
+          gameMode={selectedLanguage === 'en_march_2026' ? gameMode : 'text'}
         />
       )}
 
-      {/* Render the Continue Prompt */}
       {appState === 'promptContinue' && (
         <ContinuePrompt
           onContinue={handleContinueYes}
@@ -223,13 +237,12 @@ function App() {
         />
       )}
 
-      {/* Render the results state using ResultsScreen */}
       {appState === 'results' && selectedLanguage && (
         <ResultsScreen
           score={cumulativeScore}
-          onStartAgain={handleStartFresh} // Start again with the SAME language
-          onChangeLanguage={handleChangeLanguage} // Add option to change language
-          language={selectedLanguage} // Pass language for context if needed
+          onStartAgain={handleStartFresh}
+          onChangeLanguage={handleChangeLanguage}
+          language={selectedLanguage}
         />
       )}
     </div>
