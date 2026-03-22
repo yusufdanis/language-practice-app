@@ -7,7 +7,7 @@ import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
 import EnglishModeSelector from './components/EnglishModeSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
-import { shuffleArray } from './utils/shuffle'
+import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
 
 type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
 
@@ -91,16 +91,14 @@ function App() {
 
   // Function to initialize a new 10-question round for the selected language
   const startNewSessionRound = () => {
-    if (currentVocabulary.length < 10) {
+    if (currentVocabulary.length < 10 || !selectedLanguage) {
       setError('Cannot start a new session round, not enough vocabulary data loaded.')
       setAppState('error')
       return
     }
-    // Use currentVocabulary which is loaded based on selected language
-    const sessionQuestions = shuffleArray(currentVocabulary).slice(0, 10)
+    const sessionQuestions = selectPrioritizedQuestions(currentVocabulary, selectedLanguage, 10)
     setCurrentSessionQuestions(sessionQuestions)
     setCurrentQuestionIndex(0)
-    // Do not reset cumulativeScore here
     setAppState('playing')
   }
 
@@ -137,6 +135,8 @@ function App() {
       } else if (selectedLanguage === 'de' && isGermanVocabularyItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_tr
       }
+
+      recordAnswer(selectedLanguage, currentQuestion, isCorrect)
 
       if (isCorrect) {
         setCumulativeScore(prev => ({ ...prev, correct: prev.correct + 1 }))
