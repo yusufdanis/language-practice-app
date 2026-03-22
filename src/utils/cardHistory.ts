@@ -1,5 +1,4 @@
 import { VocabularyItem, Language } from '../types';
-import { shuffleArray } from './shuffle';
 
 type CardStatus = 'correct' | 'incorrect';
 
