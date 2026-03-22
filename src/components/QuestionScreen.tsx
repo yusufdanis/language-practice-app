@@ -348,7 +348,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                   {language === 'en_march_2026' && (
                       <>
                         <span className="feedback-word-en">{info.word_en}</span>
-                        <p className="feedback-definition-en">{info.definition_en}</p>
+                        <p className="feedback-definition-en">Meaning: {info.definition_en}</p>
                       </>
                   )}
 
