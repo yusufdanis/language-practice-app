@@ -32,29 +32,46 @@ export function recordAnswer(language: Language, item: VocabularyItem, correct: 
   saveHistory(language, history);
 }
 
-export function selectPrioritizedQuestions(vocabulary: VocabularyItem[], language: Language, count: number): VocabularyItem[] {
-  const history = getHistory(language);
+const WEIGHT_NEVER_PLAYED = 10;
+const WEIGHT_INCORRECT = 5;
+const WEIGHT_CORRECT = 1;
 
-  const neverPlayed: VocabularyItem[] = [];
-  const incorrect: VocabularyItem[] = [];
-  const correct: VocabularyItem[] = [];
+function weightedRandomPick(items: { item: VocabularyItem; weight: number }[], count: number): VocabularyItem[] {
+  const pool = [...items];
+  const result: VocabularyItem[] = [];
 
-  for (const item of vocabulary) {
-    const status = history[getCardKey(item)];
-    if (!status) {
-      neverPlayed.push(item);
-    } else if (status === 'incorrect') {
-      incorrect.push(item);
-    } else {
-      correct.push(item);
+  for (let i = 0; i < count && pool.length > 0; i++) {
+    const totalWeight = pool.reduce((sum, entry) => sum + entry.weight, 0);
+    let rand = Math.random() * totalWeight;
+
+    for (let j = 0; j < pool.length; j++) {
+      rand -= pool[j].weight;
+      if (rand <= 0) {
+        result.push(pool[j].item);
+        pool.splice(j, 1);
+        break;
+      }
     }
   }
 
-  const result: VocabularyItem[] = [
-    ...shuffleArray(neverPlayed),
-    ...shuffleArray(incorrect),
-    ...shuffleArray(correct),
-  ];
+  return result;
+}
 
-  return result.slice(0, count);
+export function selectPrioritizedQuestions(vocabulary: VocabularyItem[], language: Language, count: number): VocabularyItem[] {
+  const history = getHistory(language);
+
+  const weighted = vocabulary.map(item => {
+    const status = history[getCardKey(item)];
+    let weight: number;
+    if (!status) {
+      weight = WEIGHT_NEVER_PLAYED;
+    } else if (status === 'incorrect') {
+      weight = WEIGHT_INCORRECT;
+    } else {
+      weight = WEIGHT_CORRECT;
+    }
+    return { item, weight };
+  });
+
+  return weightedRandomPick(weighted, count);
 }
