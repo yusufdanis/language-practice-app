@@ -7,7 +7,7 @@ interface WelcomeScreenProps {
 }
 
 const WelcomeScreen: React.FC<WelcomeScreenProps> = ({ onStart, language }) => {
-  const practiceLabel = language === 'en' ? 'English (April 2025)' : language === 'en_words' ? 'English (February 2026)' : 'German';
+  const practiceLabel = language === 'en' ? 'English (April 2025)' : language === 'en_words' ? 'English (February 2026)' : language === 'en_march_2026' ? 'English (March 2026)' : 'German';
 
   return (
     <div className="screen-container">

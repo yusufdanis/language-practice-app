@@ -28,10 +28,16 @@ export interface EnglishWordItem {
   word_tr: string;
 }
 
-export type VocabularyItem = EnglishVocabularyItem | GermanVocabularyItem | EnglishWordItem;
+// English definition-only items (word + English definition, no Turkish)
+export interface EnglishDefinitionItem {
+  word_en: string;
+  definition_en: string;
+}
+
+export type VocabularyItem = EnglishVocabularyItem | GermanVocabularyItem | EnglishWordItem | EnglishDefinitionItem;
 
 export function isEnglishVocabularyItem(item: VocabularyItem): item is EnglishVocabularyItem {
-  return 'definition_en' in item;
+  return 'definition_en' in item && 'word_tr' in item;
 }
 
 export function isGermanVocabularyItem(item: VocabularyItem): item is GermanVocabularyItem {
@@ -39,10 +45,14 @@ export function isGermanVocabularyItem(item: VocabularyItem): item is GermanVoca
 }
 
 export function isEnglishWordItem(item: VocabularyItem): item is EnglishWordItem {
-  return 'word_en' in item && !('definition_en' in item);
+  return 'word_en' in item && 'word_tr' in item && !('definition_en' in item);
 }
 
-export type Language = 'en' | 'en_words' | 'de';
+export function isEnglishDefinitionItem(item: VocabularyItem): item is EnglishDefinitionItem {
+  return 'definition_en' in item && !('word_tr' in item);
+}
+
+export type Language = 'en' | 'en_words' | 'en_march_2026' | 'de';
 
 // Define possible application states (if needed outside App.tsx, otherwise keep in App.tsx)
 // export type AppState = 'selectingLanguage' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'; 

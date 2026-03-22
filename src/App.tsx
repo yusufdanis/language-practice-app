@@ -6,7 +6,7 @@ import ContinuePrompt from './components/ContinuePrompt'
 import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
 import EnglishModeSelector from './components/EnglishModeSelector'
-import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isGermanVocabularyItem } from './types'
+import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { shuffleArray } from './utils/shuffle'
 
 type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
@@ -50,6 +50,8 @@ function App() {
         dataModule = await import('./data/definitions_en_april_2025.json')
       } else if (language === 'en_words') {
         dataModule = await import('./data/definitions_en_february_2026.json')
+      } else if (language === 'en_march_2026') {
+        dataModule = await import('./data/definitions_en_march_2026.json')
       } else {
         dataModule = await import('./data/definitions_de.json')
       }
@@ -61,6 +63,8 @@ function App() {
         if (language === 'en' && firstItem && 'word_en' in firstItem && 'definition_en' in firstItem) {
            isValid = true;
         } else if (language === 'en_words' && firstItem && 'word_en' in firstItem && 'word_tr' in firstItem) {
+           isValid = true;
+        } else if (language === 'en_march_2026' && firstItem && 'word_en' in firstItem && 'definition_en' in firstItem) {
            isValid = true;
         } else if (language === 'de' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
@@ -128,6 +132,8 @@ function App() {
         isCorrect = selectedWord === currentQuestion.word_en
       } else if (selectedLanguage === 'en_words' && isEnglishWordItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_tr
+      } else if (selectedLanguage === 'en_march_2026' && isEnglishDefinitionItem(currentQuestion)) {
+        isCorrect = selectedWord === currentQuestion.word_en
       } else if (selectedLanguage === 'de' && isGermanVocabularyItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_tr
       }

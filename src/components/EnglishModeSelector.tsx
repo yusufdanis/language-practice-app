@@ -29,6 +29,15 @@ const EnglishModeSelector: React.FC<EnglishModeSelectorProps> = ({ onSelectMode 
           <span style={styles.buttonTitle}>February 2026</span>
           <span style={styles.buttonDesc}>English to Turkish translation</span>
         </button>
+        <button
+          className="mode-selector-button"
+          style={styles.button}
+          onClick={() => onSelectMode('en_march_2026')}
+        >
+          <span style={styles.emoji}>📖</span>
+          <span style={styles.buttonTitle}>March 2026</span>
+          <span style={styles.buttonDesc}>Match definitions to words</span>
+        </button>
       </div>
     </div>
   );
