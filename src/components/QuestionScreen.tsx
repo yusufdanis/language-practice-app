@@ -70,9 +70,10 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
       audioRef.current = null;
     }
 
+    let cleanupTimer: (() => void) | undefined;
     if (isSoundMode) {
       const timer = setTimeout(playAudio, 300);
-      return () => clearTimeout(timer);
+      cleanupTimer = () => clearTimeout(timer);
     }
 
     let correctWord = '';
@@ -118,7 +119,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     const allOptions = shuffleArray([correctWord, ...selectedIncorrect]);
     setOptions(allOptions);
 
-  }, [questionItem, allVocabulary, language]);
+    return cleanupTimer;
+  }, [questionItem, allVocabulary, language, isSoundMode, playAudio]);
 
   useEffect(() => {
     if (isAnswered) {
