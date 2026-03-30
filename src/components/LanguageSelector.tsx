@@ -9,7 +9,7 @@ interface LanguageSelectorProps {
 const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, onViewHistory }) => {
   return (
     <div className="language-selector" style={styles.selectorContainer}>
-      <button style={styles.historyButton} onClick={onViewHistory} title="History">
+      <button className="home-button" style={{ left: 'auto', right: '12px' }} onClick={onViewHistory} title="History">
         📊
       </button>
       <h1 style={styles.greeting}>Hello Zeynep <span style={{color: 'red'}}>❤️</span></h1>
@@ -55,21 +55,6 @@ const styles = {
     backgroundColor: '#007bff',
     color: 'white',
     transition: 'background-color 0.2s ease'
-  },
-  historyButton: {
-    position: 'absolute' as const,
-    top: '10px',
-    right: '10px',
-    background: 'none',
-    border: '2px solid #007bff',
-    borderRadius: '50%',
-    width: '44px',
-    height: '44px',
-    fontSize: '1.4em',
-    cursor: 'pointer',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   }
 };
 
