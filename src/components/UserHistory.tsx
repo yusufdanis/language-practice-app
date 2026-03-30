@@ -2,10 +2,6 @@ import React from 'react';
 import { getSessionHistory, getLanguageLabel, SessionRecord } from '../utils/sessionHistory';
 import { Language } from '../types';
 
-interface UserHistoryProps {
-  onBack: () => void;
-}
-
 interface LanguageStats {
   label: string;
   sessions: number;
@@ -14,7 +10,7 @@ interface LanguageStats {
   lastPlayed: string;
 }
 
-const UserHistory: React.FC<UserHistoryProps> = ({ onBack }) => {
+const UserHistory: React.FC = () => {
   const history = getSessionHistory();
 
   // Group by language

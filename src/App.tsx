@@ -240,7 +240,7 @@ function App() {
         />
       )}
 
-      {appState === 'viewingHistory' && <UserHistory onBack={() => setAppState('selectingLanguage')} />}
+      {appState === 'viewingHistory' && <UserHistory />}
 
       {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={handleEnglishModeSelect} />}
 
