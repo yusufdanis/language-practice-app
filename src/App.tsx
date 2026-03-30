@@ -6,12 +6,13 @@ import ContinuePrompt from './components/ContinuePrompt'
 import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
 import EnglishModeSelector from './components/EnglishModeSelector'
+import GermanModeSelector from './components/GermanModeSelector'
 import GameModeSelector, { GameMode } from './components/GameModeSelector'
 import CardCountSelector from './components/CardCountSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
 
-type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -36,6 +37,8 @@ function App() {
   const handleLanguageSelect = (language: Language) => {
     if (language === 'en') {
       setAppState('selectingEnglishMode')
+    } else if (language === 'de') {
+      setAppState('selectingGermanMode')
     } else {
       loadData(language)
     }
@@ -48,6 +51,10 @@ function App() {
     } else {
       loadData(language)
     }
+  }
+
+  const handleGermanModeSelect = (language: Language) => {
+    loadData(language)
   }
 
   const handleGameModeSelect = (mode: GameMode) => {
@@ -71,6 +78,8 @@ function App() {
         dataModule = await import('./data/definitions_en_february_2026.json')
       } else if (language === 'en_march_2026') {
         dataModule = await import('./data/definitions_en_march_2026.json')
+      } else if (language === 'de_march_2026') {
+        dataModule = await import('./data/definitions_de_march_2026.json')
       } else {
         dataModule = await import('./data/definitions_de.json')
       }
@@ -86,6 +95,8 @@ function App() {
         } else if (language === 'en_march_2026' && firstItem && 'word_en' in firstItem && 'definition_en' in firstItem) {
            isValid = true;
         } else if (language === 'de' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
+           isValid = true;
+        } else if (language === 'de_march_2026' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
         }
 
@@ -147,7 +158,7 @@ function App() {
         isCorrect = selectedWord === currentQuestion.word_tr
       } else if (selectedLanguage === 'en_march_2026' && isEnglishDefinitionItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_en
-      } else if (selectedLanguage === 'de' && isGermanVocabularyItem(currentQuestion)) {
+      } else if ((selectedLanguage === 'de' || selectedLanguage === 'de_march_2026') && isGermanVocabularyItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_tr
       }
 
@@ -201,6 +212,8 @@ function App() {
       {appState === 'selectingLanguage' && <LanguageSelector onSelectLanguage={handleLanguageSelect} />}
 
       {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={handleEnglishModeSelect} />}
+
+      {appState === 'selectingGermanMode' && <GermanModeSelector onSelectMode={handleGermanModeSelect} />}
 
       {appState === 'selectingGameMode' && <GameModeSelector onSelectMode={handleGameModeSelect} />}
 

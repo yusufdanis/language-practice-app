@@ -97,7 +97,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         .filter(isEnglishDefinitionItem)
         .filter(item => item.word_en !== correctWord)
         .map(item => item.word_en);
-    } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+    } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
       correctWord = questionItem.word_tr;
       distractors = allVocabulary
         .filter(isGermanVocabularyItem)
@@ -145,7 +145,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         isCorrect = selectedOption === questionItem.word_tr;
     } else if (language === 'en_march_2026' && isEnglishDefinitionItem(questionItem)) {
         isCorrect = selectedOption === questionItem.word_en;
-    } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+    } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
         isCorrect = selectedOption === questionItem.word_tr;
     }
 
@@ -171,7 +171,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_en: questionItem.word_en,
                 definition_en: questionItem.definition_en
             });
-        } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+        } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
             feedback.push({
                 label: 'Correct Answer',
                 word_de: questionItem.word_de,
@@ -197,7 +197,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_en: questionItem.word_en,
                 definition_en: questionItem.definition_en
             });
-        } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+        } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
             feedback.push({
                 word_de: questionItem.word_de,
                 word_tr: questionItem.word_tr
@@ -257,7 +257,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_en: questionItem.word_en,
                 definition_en: questionItem.definition_en
             });
-        } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+        } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
             const selectedWordItem = allVocabulary.find(item =>
                  isGermanVocabularyItem(item) && item.word_tr === selectedOption
             );
@@ -289,7 +289,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         isCorrectOption = option === questionItem.word_tr;
     } else if (language === 'en_march_2026' && isEnglishDefinitionItem(questionItem)) {
         isCorrectOption = option === questionItem.word_en;
-    } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+    } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
         isCorrectOption = option === questionItem.word_tr;
     }
 
@@ -315,7 +315,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   } else if (language === 'en_march_2026' && isEnglishDefinitionItem(questionItem)) {
     questionPrompt = isSoundMode ? '' : `"${questionItem.definition_en}"`;
     questionText = "Which word matches this definition?";
-  } else if (language === 'de' && isGermanVocabularyItem(questionItem)) {
+  } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
     questionPrompt = `"${questionItem.word_de}"`;
     questionText = "Which is the correct Turkish translation?";
   } else {
@@ -417,7 +417,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                       </>
                   )}
                   
-                  {language === 'de' && (
+                  {(language === 'de' || language === 'de_march_2026') && (
                       <>
                         <span className="feedback-word-de">{info.word_de}</span> = {' '}
                         <span className="feedback-word-tr">{info.word_tr}</span>
