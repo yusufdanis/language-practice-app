@@ -10,7 +10,7 @@ const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, o
   return (
     <div className="language-selector" style={styles.selectorContainer}>
       <button style={styles.historyButton} onClick={onViewHistory} title="History">
-        👤
+        📊
       </button>
       <h1 style={styles.greeting}>Hello Zeynep <span style={{color: 'red'}}>❤️</span></h1>
       <h2 style={styles.heading}>Choose Your Practice Language</h2>
