@@ -1,17 +1,17 @@
 import json
 import os
 import re
-import wave
 
-from piper import PiperVoice
-from piper.config import SynthesisConfig
+from google.cloud import texttospeech
+from google.oauth2 import service_account
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), "..", "src", "data", "definitions_de_march_2026.json")
-OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "..", "public", "audio", "de_march_2026")
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "de_DE-thorsten-high.onnx")
+SCRIPT_DIR = os.path.dirname(__file__)
+DATA_PATH = os.path.join(SCRIPT_DIR, "..", "src", "data", "definitions_de_march_2026.json")
+OUTPUT_DIR = os.path.join(SCRIPT_DIR, "..", "public", "audio", "de_march_2026")
+CREDENTIALS_PATH = os.path.join(SCRIPT_DIR, "..", ".docs", "language-practice-app-491816-f32f31a667c6.json")
 
-# length_scale > 1.0 = slower speech (1.3 = 30% slower)
-LENGTH_SCALE = 1.3
+VOICE_NAME = "de-DE-Neural2-B"  # German male Neural2 voice
+SPEAKING_RATE = 0.85  # Slightly slower for learners
 
 def sanitize_filename(text: str) -> str:
     return re.sub(r'[^a-zäöüß0-9]+', '_', text.lower()).strip('_')
@@ -22,8 +22,17 @@ def main():
     with open(DATA_PATH, "r") as f:
         words = json.load(f)
 
-    print(f"Loading Piper voice model from {MODEL_PATH}...")
-    voice = PiperVoice.load(MODEL_PATH)
+    credentials = service_account.Credentials.from_service_account_file(CREDENTIALS_PATH)
+    client = texttospeech.TextToSpeechClient(credentials=credentials)
+
+    voice = texttospeech.VoiceSelectionParams(
+        language_code="de-DE",
+        name=VOICE_NAME,
+    )
+    audio_config = texttospeech.AudioConfig(
+        audio_encoding=texttospeech.AudioEncoding.LINEAR16,
+        speaking_rate=SPEAKING_RATE,
+    )
 
     total = len(words)
     for i, entry in enumerate(words):
@@ -35,8 +44,13 @@ def main():
             os.remove(filepath)
 
         print(f"[{i+1}/{total}] Generating: {word_de} -> {filename}")
-        with wave.open(filepath, "wb") as wav_file:
-            voice.synthesize_wav(word_de, wav_file, syn_config=SynthesisConfig(length_scale=LENGTH_SCALE))
+        response = client.synthesize_speech(
+            input=texttospeech.SynthesisInput(text=word_de),
+            voice=voice,
+            audio_config=audio_config,
+        )
+        with open(filepath, "wb") as f:
+            f.write(response.audio_content)
 
     print(f"\nDone! Generated audio for {total} words.")
 
