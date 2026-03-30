@@ -11,8 +11,10 @@ import GameModeSelector, { GameMode } from './components/GameModeSelector'
 import CardCountSelector from './components/CardCountSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
+import { recordSession } from './utils/sessionHistory'
+import UserHistory from './components/UserHistory'
 
-type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGermanDirection' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'viewingHistory' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGermanDirection' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -196,6 +198,9 @@ function App() {
   }
 
   const handleContinueNo = () => {
+    if (selectedLanguage && (cumulativeScore.correct + cumulativeScore.incorrect) > 0) {
+      recordSession(selectedLanguage, cumulativeScore.correct, cumulativeScore.incorrect)
+    }
     setAppState('results')
   }
 
@@ -228,7 +233,14 @@ function App() {
         </button>
       )}
 
-      {appState === 'selectingLanguage' && <LanguageSelector onSelectLanguage={handleLanguageSelect} />}
+      {appState === 'selectingLanguage' && (
+        <LanguageSelector
+          onSelectLanguage={handleLanguageSelect}
+          onViewHistory={() => setAppState('viewingHistory')}
+        />
+      )}
+
+      {appState === 'viewingHistory' && <UserHistory onBack={() => setAppState('selectingLanguage')} />}
 
       {appState === 'selectingEnglishMode' && <EnglishModeSelector onSelectMode={handleEnglishModeSelect} />}
 

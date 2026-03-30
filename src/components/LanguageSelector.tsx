@@ -2,12 +2,16 @@ import React from 'react';
 import { Language } from '../types'; // Import the Language type
 
 interface LanguageSelectorProps {
-  onSelectLanguage: (language: Language) => void; // Function to call when a language is selected
+  onSelectLanguage: (language: Language) => void;
+  onViewHistory: () => void;
 }
 
-const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage }) => {
+const LanguageSelector: React.FC<LanguageSelectorProps> = ({ onSelectLanguage, onViewHistory }) => {
   return (
     <div className="language-selector" style={styles.selectorContainer}>
+      <button style={styles.historyButton} onClick={onViewHistory} title="History">
+        👤
+      </button>
       <h1 style={styles.greeting}>Hello Zeynep <span style={{color: 'red'}}>❤️</span></h1>
       <h2 style={styles.heading}>Choose Your Practice Language</h2>
       <div className="language-options" style={styles.optionsContainer}>
@@ -51,7 +55,21 @@ const styles = {
     backgroundColor: '#007bff',
     color: 'white',
     transition: 'background-color 0.2s ease'
-    // Add hover styles via CSS or state if needed
+  },
+  historyButton: {
+    position: 'absolute' as const,
+    top: '10px',
+    right: '10px',
+    background: 'none',
+    border: '2px solid #007bff',
+    borderRadius: '50%',
+    width: '44px',
+    height: '44px',
+    fontSize: '1.4em',
+    cursor: 'pointer',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   }
 };
 
