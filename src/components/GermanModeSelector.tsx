@@ -17,7 +17,7 @@ const GermanModeSelector: React.FC<GermanModeSelectorProps> = ({ onSelectMode })
           onClick={() => onSelectMode('de')}
         >
           <span style={styles.emoji}>📝</span>
-          <span style={styles.buttonTitle}>German</span>
+          <span style={styles.buttonTitle}>April 2025</span>
           <span style={styles.buttonDesc}>German to Turkish translation</span>
         </button>
         <button
