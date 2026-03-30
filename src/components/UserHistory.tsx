@@ -63,10 +63,6 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onBack }) => {
 
   return (
     <div className="screen-container" style={styles.container}>
-      <button className="home-button" onClick={onBack} title="Back" style={{ position: 'absolute', top: '10px', left: '10px' }}>
-        🏠
-      </button>
-
       <h2 style={styles.title}>Practice History</h2>
 
       {history.length === 0 ? (
