@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import './App.css'
-import WelcomeScreen from './components/WelcomeScreen'
 import QuestionScreen from './components/QuestionScreen'
 import ContinuePrompt from './components/ContinuePrompt'
 import ResultsScreen from './components/ResultsScreen'
@@ -13,7 +12,7 @@ import CardCountSelector from './components/CardCountSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
 
-type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGermanDirection' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGermanDirection' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -79,7 +78,8 @@ function App() {
 
   const handleCardCountSelect = (count: number) => {
     setCardCount(count)
-    setAppState('welcome')
+    setCumulativeScore({ correct: 0, incorrect: 0 })
+    startNewSessionRound(count)
   }
 
   const loadData = async (language: Language, nextState?: AppState) => {
@@ -136,13 +136,13 @@ function App() {
     }
   }
 
-  const startNewSessionRound = () => {
+  const startNewSessionRound = (count?: number) => {
     if (currentVocabulary.length < 10 || !selectedLanguage) {
       setError('Cannot start a new session round, not enough vocabulary data loaded.')
       setAppState('error')
       return
     }
-    const sessionQuestions = selectPrioritizedQuestions(currentVocabulary, selectedLanguage, cardCount)
+    const sessionQuestions = selectPrioritizedQuestions(currentVocabulary, selectedLanguage, count ?? cardCount)
     setCurrentSessionQuestions(sessionQuestions)
     setCurrentQuestionIndex(0)
     setAppState('playing')
@@ -243,13 +243,6 @@ function App() {
       )}
 
       {appState === 'loading' && <div>Loading vocabulary...</div>}
-
-      {appState === 'welcome' && selectedLanguage && (
-        <WelcomeScreen
-            onStart={handleStartFresh}
-            language={selectedLanguage}
-        />
-      )}
 
       {appState === 'playing' && selectedLanguage && currentSessionQuestions.length > 0 && (
         <QuestionScreen
