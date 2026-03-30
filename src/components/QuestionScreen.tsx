@@ -8,6 +8,11 @@ function getAudioUrl(wordEn: string): string {
   return `${import.meta.env.BASE_URL}audio/march_2026/${filename}.wav`;
 }
 
+function getGermanAudioUrl(wordDe: string): string {
+  const filename = wordDe.toLowerCase().replace(/[^a-zäöüß0-9]+/g, '_').replace(/^_|_$/g, '');
+  return `${import.meta.env.BASE_URL}audio/de_march_2026/${filename}.wav`;
+}
+
 interface FeedbackDetail {
   label?: string;
   word_en?: string;
@@ -46,14 +51,21 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
   const nextButtonRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  const isSoundMode = gameMode === 'sound' && language === 'en_march_2026';
+  const isSoundMode = gameMode === 'sound' && (language === 'en_march_2026' || language === 'de_march_2026');
 
   const playAudio = useCallback(() => {
-    if (isSoundMode && isEnglishDefinitionItem(questionItem)) {
-      if (audioRef.current) {
-        audioRef.current.pause();
-      }
-      const audio = new Audio(getAudioUrl(questionItem.word_en));
+    if (!isSoundMode) return;
+    if (audioRef.current) {
+      audioRef.current.pause();
+    }
+    let url = '';
+    if (isEnglishDefinitionItem(questionItem)) {
+      url = getAudioUrl(questionItem.word_en);
+    } else if (isGermanVocabularyItem(questionItem)) {
+      url = getGermanAudioUrl(questionItem.word_de);
+    }
+    if (url) {
+      const audio = new Audio(url);
       audioRef.current = audio;
       audio.play().catch(console.error);
     }
@@ -103,6 +115,12 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         .filter(isGermanVocabularyItem)
         .filter(item => item.word_tr !== correctWord)
         .map(item => item.word_tr);
+    } else if (language === 'de_march_2026_tr' && isGermanVocabularyItem(questionItem)) {
+      correctWord = questionItem.word_de;
+      distractors = allVocabulary
+        .filter(isGermanVocabularyItem)
+        .filter(item => item.word_de !== correctWord)
+        .map(item => item.word_de);
     } else {
       console.error("Mismatched language and question item type:", language, questionItem);
       setOptions([]);
@@ -147,6 +165,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         isCorrect = selectedOption === questionItem.word_en;
     } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
         isCorrect = selectedOption === questionItem.word_tr;
+    } else if (language === 'de_march_2026_tr' && isGermanVocabularyItem(questionItem)) {
+        isCorrect = selectedOption === questionItem.word_de;
     }
 
     if (selectedOption === null) {
@@ -171,7 +191,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_en: questionItem.word_en,
                 definition_en: questionItem.definition_en
             });
-        } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
+        } else if ((language === 'de' || language === 'de_march_2026' || language === 'de_march_2026_tr') && isGermanVocabularyItem(questionItem)) {
             feedback.push({
                 label: 'Correct Answer',
                 word_de: questionItem.word_de,
@@ -197,7 +217,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_en: questionItem.word_en,
                 definition_en: questionItem.definition_en
             });
-        } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
+        } else if ((language === 'de' || language === 'de_march_2026' || language === 'de_march_2026_tr') && isGermanVocabularyItem(questionItem)) {
             feedback.push({
                 word_de: questionItem.word_de,
                 word_tr: questionItem.word_tr
@@ -273,6 +293,22 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                 word_de: questionItem.word_de,
                 word_tr: questionItem.word_tr
             });
+        } else if (language === 'de_march_2026_tr' && isGermanVocabularyItem(questionItem)) {
+            const selectedWordItem = allVocabulary.find(item =>
+                 isGermanVocabularyItem(item) && item.word_de === selectedOption
+            );
+            if (selectedWordItem && isGermanVocabularyItem(selectedWordItem)) {
+                feedback.push({
+                    label: 'Your Answer',
+                    word_de: selectedWordItem.word_de,
+                    word_tr: selectedWordItem.word_tr
+                });
+            }
+            feedback.push({
+                label: 'Correct Answer',
+                word_de: questionItem.word_de,
+                word_tr: questionItem.word_tr
+            });
         }
     }
     setFeedbackInfo(feedback);
@@ -291,6 +327,8 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
         isCorrectOption = option === questionItem.word_en;
     } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
         isCorrectOption = option === questionItem.word_tr;
+    } else if (language === 'de_march_2026_tr' && isGermanVocabularyItem(questionItem)) {
+        isCorrectOption = option === questionItem.word_de;
     }
 
     const isSelected = option === selectedAnswer;
@@ -316,8 +354,11 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
     questionPrompt = isSoundMode ? '' : `"${questionItem.definition_en}"`;
     questionText = "Which word matches this definition?";
   } else if ((language === 'de' || language === 'de_march_2026') && isGermanVocabularyItem(questionItem)) {
-    questionPrompt = `"${questionItem.word_de}"`;
+    questionPrompt = isSoundMode ? '' : `"${questionItem.word_de}"`;
     questionText = "Which is the correct Turkish translation?";
+  } else if (language === 'de_march_2026_tr' && isGermanVocabularyItem(questionItem)) {
+    questionPrompt = `"${questionItem.word_tr}"`;
+    questionText = "Which is the correct German word?";
   } else {
     return <div>Error: Invalid question data for the selected language.</div>;
   }
@@ -417,7 +458,7 @@ const QuestionScreen: React.FC<QuestionScreenProps> = ({
                       </>
                   )}
                   
-                  {(language === 'de' || language === 'de_march_2026') && (
+                  {(language === 'de' || language === 'de_march_2026' || language === 'de_march_2026_tr') && (
                       <>
                         <span className="feedback-word-de">{info.word_de}</span> = {' '}
                         <span className="feedback-word-tr">{info.word_tr}</span>

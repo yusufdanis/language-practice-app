@@ -1,40 +1,33 @@
 import React from 'react';
 import { Language } from '../types';
 
-export type GameMode = 'text' | 'sound';
-
-interface GameModeSelectorProps {
-  onSelectMode: (mode: GameMode) => void;
-  language?: Language;
+interface GermanDirectionSelectorProps {
+  onSelectDirection: (language: Language) => void;
 }
 
-const GameModeSelector: React.FC<GameModeSelectorProps> = ({ onSelectMode, language }) => {
-  const isGerman = language === 'de_march_2026';
-  const textDesc = isGerman ? 'Read the German word' : 'Read the definition';
-  const soundDesc = isGerman ? 'Listen to the German word' : 'Listen to the definition';
-
+const GermanDirectionSelector: React.FC<GermanDirectionSelectorProps> = ({ onSelectDirection }) => {
   return (
     <div className="language-selector" style={styles.container}>
       <h2 style={styles.heading}>March 2026</h2>
-      <p style={styles.subtitle}>Choose your game mode</p>
+      <p style={styles.subtitle}>Choose your direction</p>
       <div style={styles.optionsContainer}>
         <button
           className="mode-selector-button"
           style={styles.button}
-          onClick={() => onSelectMode('text')}
+          onClick={() => onSelectDirection('de_march_2026')}
         >
-          <span style={styles.emoji}>📖</span>
-          <span style={styles.buttonTitle}>Text</span>
-          <span style={styles.buttonDesc}>{textDesc}</span>
+          <span style={styles.emoji}>🇩🇪 → 🇹🇷</span>
+          <span style={styles.buttonTitle}>German to Turkish</span>
+          <span style={styles.buttonDesc}>See German, pick Turkish</span>
         </button>
         <button
           className="mode-selector-button"
           style={styles.button}
-          onClick={() => onSelectMode('sound')}
+          onClick={() => onSelectDirection('de_march_2026_tr')}
         >
-          <span style={styles.emoji}>🔊</span>
-          <span style={styles.buttonTitle}>Sound</span>
-          <span style={styles.buttonDesc}>{soundDesc}</span>
+          <span style={styles.emoji}>🇹🇷 → 🇩🇪</span>
+          <span style={styles.buttonTitle}>Turkish to German</span>
+          <span style={styles.buttonDesc}>See Turkish, pick German</span>
         </button>
       </div>
     </div>
@@ -91,4 +84,4 @@ const styles = {
   },
 };
 
-export default GameModeSelector;
+export default GermanDirectionSelector;

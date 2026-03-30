@@ -7,12 +7,13 @@ import ResultsScreen from './components/ResultsScreen'
 import LanguageSelector from './components/LanguageSelector'
 import EnglishModeSelector from './components/EnglishModeSelector'
 import GermanModeSelector from './components/GermanModeSelector'
+import GermanDirectionSelector from './components/GermanDirectionSelector'
 import GameModeSelector, { GameMode } from './components/GameModeSelector'
 import CardCountSelector from './components/CardCountSelector'
 import { VocabularyItem, Language, isEnglishVocabularyItem, isEnglishWordItem, isEnglishDefinitionItem, isGermanVocabularyItem } from './types'
 import { selectPrioritizedQuestions, recordAnswer } from './utils/cardHistory'
 
-type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
+type AppState = 'selectingLanguage' | 'selectingEnglishMode' | 'selectingGermanMode' | 'selectingGermanDirection' | 'selectingGameMode' | 'selectingCardCount' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'
 
 // Define score structure
 interface Score {
@@ -54,7 +55,21 @@ function App() {
   }
 
   const handleGermanModeSelect = (language: Language) => {
-    loadData(language)
+    if (language === 'de_march_2026') {
+      setAppState('selectingGermanDirection')
+    } else {
+      loadData(language)
+    }
+  }
+
+  const handleGermanDirectionSelect = (language: Language) => {
+    if (language === 'de_march_2026') {
+      // DE->TR: load data, then show game mode selector (text/sound)
+      loadData(language, 'selectingGameMode')
+    } else {
+      // TR->DE: text only, go straight to card count
+      loadData(language)
+    }
   }
 
   const handleGameModeSelect = (mode: GameMode) => {
@@ -78,7 +93,7 @@ function App() {
         dataModule = await import('./data/definitions_en_february_2026.json')
       } else if (language === 'en_march_2026') {
         dataModule = await import('./data/definitions_en_march_2026.json')
-      } else if (language === 'de_march_2026') {
+      } else if (language === 'de_march_2026' || language === 'de_march_2026_tr') {
         dataModule = await import('./data/definitions_de_march_2026.json')
       } else {
         dataModule = await import('./data/definitions_de.json')
@@ -97,6 +112,8 @@ function App() {
         } else if (language === 'de' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
         } else if (language === 'de_march_2026' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
+           isValid = true;
+        } else if (language === 'de_march_2026_tr' && firstItem && 'word_de' in firstItem && 'word_tr' in firstItem) {
            isValid = true;
         }
 
@@ -160,6 +177,8 @@ function App() {
         isCorrect = selectedWord === currentQuestion.word_en
       } else if ((selectedLanguage === 'de' || selectedLanguage === 'de_march_2026') && isGermanVocabularyItem(currentQuestion)) {
         isCorrect = selectedWord === currentQuestion.word_tr
+      } else if (selectedLanguage === 'de_march_2026_tr' && isGermanVocabularyItem(currentQuestion)) {
+        isCorrect = selectedWord === currentQuestion.word_de
       }
 
       recordAnswer(selectedLanguage, currentQuestion, isCorrect)
@@ -215,7 +234,9 @@ function App() {
 
       {appState === 'selectingGermanMode' && <GermanModeSelector onSelectMode={handleGermanModeSelect} />}
 
-      {appState === 'selectingGameMode' && <GameModeSelector onSelectMode={handleGameModeSelect} />}
+      {appState === 'selectingGermanDirection' && <GermanDirectionSelector onSelectDirection={handleGermanDirectionSelect} />}
+
+      {appState === 'selectingGameMode' && <GameModeSelector onSelectMode={handleGameModeSelect} language={selectedLanguage ?? undefined} />}
 
       {appState === 'selectingCardCount' && (
         <CardCountSelector totalCards={currentVocabulary.length} onSelectCount={handleCardCountSelect} />
@@ -239,7 +260,7 @@ function App() {
           onAnswerSelected={handleAnswerSelected}
           onNextQuestion={handleNextQuestion}
           language={selectedLanguage}
-          gameMode={selectedLanguage === 'en_march_2026' ? gameMode : 'text'}
+          gameMode={(selectedLanguage === 'en_march_2026' || selectedLanguage === 'de_march_2026') ? gameMode : 'text'}
         />
       )}
 

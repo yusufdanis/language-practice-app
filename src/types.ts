@@ -52,7 +52,7 @@ export function isEnglishDefinitionItem(item: VocabularyItem): item is EnglishDe
   return 'definition_en' in item && !('word_tr' in item);
 }
 
-export type Language = 'en' | 'en_words' | 'en_march_2026' | 'de' | 'de_march_2026';
+export type Language = 'en' | 'en_words' | 'en_march_2026' | 'de' | 'de_march_2026' | 'de_march_2026_tr';
 
 // Define possible application states (if needed outside App.tsx, otherwise keep in App.tsx)
 // export type AppState = 'selectingLanguage' | 'loading' | 'welcome' | 'playing' | 'promptContinue' | 'results' | 'error'; 
