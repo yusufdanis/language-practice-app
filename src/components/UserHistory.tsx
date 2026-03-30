@@ -49,8 +49,7 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onBack }) => {
   const totalAnswered = totalCorrect + totalIncorrect;
   const overallPercentage = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
 
-  // Recent sessions (last 10)
-  const recentSessions = [...history].reverse().slice(0, 10);
+  const recentSessions = [...history].reverse();
 
   const formatDate = (iso: string) => {
     const d = new Date(iso);
@@ -109,7 +108,7 @@ const UserHistory: React.FC<UserHistoryProps> = ({ onBack }) => {
           })}
 
           {/* Recent sessions */}
-          <h3 style={styles.sectionTitle}>Recent Sessions</h3>
+          <h3 style={styles.sectionTitle}>All Sessions</h3>
           {recentSessions.map((s: SessionRecord, i: number) => {
             const total = s.correct + s.incorrect;
             const pct = total > 0 ? Math.round((s.correct / total) * 100) : 0;
